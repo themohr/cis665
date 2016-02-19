@@ -1,0 +1,9 @@
+<head>
+	<!--
+		Authors: Dennis Mohr, Nick Hoyle, Hemang Vyas
+		Date: 02/18/2016
+		Description: Tournament registration appplication	
+	-->
+	<title>Tournament registration appplication</title>
+	<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css"/>
+</head>

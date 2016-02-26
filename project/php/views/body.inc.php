@@ -1,9 +1,16 @@
 <body>
+	<?php include_once('header.inc.php');?>
 	<section class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<h1>Tournament Registration Application</h1>
-			</div>
+			
+				<?php require_once("lib/ProcessView.class.php");
+					
+					$view = new ProcessView();
+					include('content/' . $view->displayView($_SERVER['QUERY_STRING']) . '.php');
+					
+				?>
+			
 		</div>
-	</section>		
+	</section>
+	<?php include_once('footer.inc.php');?>	
 </body>

@@ -77,6 +77,44 @@ function executeQuery($query)
         die ('Query failed: ' . $e->getMessage());
     }
 }
+
+function executeProcedure($query)
+{
+    // call the dbConnect function
+
+    $conn = dbConnect();
+
+    try
+    {
+        // execute query and assign results to a PDOStatement object
+
+        //$stmt = $conn->query($query);
+         $stmt = $conn->query(Exec . $query);
+
+      //   $stmt->execute();
+
+//Uncomment these 4 lines to display $results
+       
+       echo '<pre style="font-size:large">';
+        print_r($results);
+      echo '</pre>';
+        die;
+       
+//call dbDisconnect() method to close the connection
+
+        dbDisconnect($conn);
+
+        return $results;
+    }
+    catch (PDOException $e)
+    {
+        //if execution fails
+
+        dbDisconnect($conn);
+        die ('Query failed: ' . $e->getMessage());
+    }
+}
+
 function dbDisconnect($conn)
 {
     // closes the specfied connection and releases associated resources

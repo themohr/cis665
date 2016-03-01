@@ -5,7 +5,7 @@
 				<h1>Tournament Registration</h1>
 				<nav class="main-nav">
 					<div class="main-nav-item"><a href="<?php echo $_SERVER['PHP_SELF']; ?>">Home</a></div>
-					<div class="main-nav-item"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?page=register">Register</a></div>
+					<div class="main-nav-item"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?page=register">Login/Register</a></div>
 					<div class="main-nav-item"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?page=locations">Locations</a></div>
 				</nav>
 			</div>

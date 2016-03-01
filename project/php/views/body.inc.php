@@ -6,7 +6,8 @@
 				<?php require_once("lib/ProcessView.class.php");
 					
 					$view = new ProcessView();
-					include('content/' . $view->displayView($_SERVER['QUERY_STRING']) . '.php');
+					//echo $view->displayView($_SERVER['QUERY_STRING']);
+					include($view->displayView($_SERVER['QUERY_STRING']));
 					
 				?>
 			

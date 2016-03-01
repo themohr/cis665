@@ -1,16 +1,16 @@
 <?php
 class ProcessView {
 	
-	public $uri = "";
+	private $path = "views/content/";
 	
 	function displayView($serverInfo) {
 		
 		$path = "";
 		
-		if($serverInfo == "") {
-			$path = "home";
+		if($serverInfo !== "" && file_exists($this->path . substr($serverInfo, 5) . ".php")) {
+			$path = $this->path . substr($serverInfo, 5) . ".php";
 		} else {
-			$path = substr($serverInfo, 5);
+			$path = $this->path . "home.php";
 		}
 		
 		return $path;

@@ -6,4 +6,6 @@
 	-->
 	<title>Tournament registration appplication</title>
 	<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../_css/modules.css"/>
+	<link rel="stylesheet" type="text/css" href="../_css/themes.css"/>
 </head>

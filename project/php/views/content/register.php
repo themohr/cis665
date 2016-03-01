@@ -6,11 +6,10 @@
 	</form>
 	<?php 
 	}else {
-		//Present user message
-		
-		@require_once("formprocess.class");
-		$process = $form->processmethod($_POST);
+			
+		// Process Registration
 		echo "You have succesfully registered";
+
 	}
 	?>
 </div>

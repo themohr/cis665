@@ -25,17 +25,9 @@ Class Player
      
      
     // Constructor
-     
-    function __construct($_playerId, $_lname, $_fname, $_teamId) {
-        $this->_playerId = $_playerId;
-        $this->_lname = $_lname;
-        $this->_fname = $_fname;
-        $this->_teamId = $_teamId;
-    }
+  
 
-    public function Player(){
-         
-    }
+    public function Player(){  }
      
 
      //Methods

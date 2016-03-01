@@ -20,13 +20,7 @@ class Registration
      
     //Constructor
     
-    function __construct($_registrationId, $_activityDate, $_teamId, $_tournamentId) {
-        $this->_registrationId = $_registrationId;
-        $this->_activityDate = $_activityDate;
-        $this->_teamId = $_teamId;
-        $this->_tournamentId = $_tournamentId;
-    }
-    
+   
     public function Registration (){}
 
     

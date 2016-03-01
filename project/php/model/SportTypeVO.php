@@ -16,15 +16,10 @@ class SportType{
     private $_sportTypeName;
    
     //Relation
-     
+     private $_tournaments;
     //Constructor
-     
-    function __construct($_sportTypeId, $_sportTypeName) {
-        $this->_sportTypeId = $_sportTypeId;
-        $this->_sportTypeName = $_sportTypeName;
-    }
-
-    public function SportType(){}
+ 
+     public function SportType(){}
     
     //Methods
     
@@ -42,6 +37,14 @@ class SportType{
 
     public function set_sportTypeName($_sportTypeName) {
         $this->_sportTypeName = $_sportTypeName;
+    }
+
+    public function get_tournaments() {
+        return $this->_tournaments;
+    }
+
+    public function set_tournaments($_tournaments) {
+        $this->_tournaments = $_tournaments;
     }
 
 

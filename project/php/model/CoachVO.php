@@ -22,20 +22,12 @@ class Coach
     
     //Relation
     
+    private $_team;
+    
     //Constructor
     
-     function __construct($_coachId, $_lname, $_fname, $_emailAddress, $_password, $_teamName) {
-        $this->_coachId = $_coachId;
-        $this->_lname = $_lname;
-        $this->_fname = $_fname;
-        $this->_emailAddress = $_emailAddress;
-        $this->_password = $_password;
-        $this->_teamName = $_teamName;
-    }
-    
-    public function Coach(){
-         
-    }
+     
+    public function Coach(){ }
     
     //Methods
     
@@ -86,6 +78,16 @@ class Coach
     public function set_teamName($_teamName) {
         $this->_teamName = $_teamName;
     }
+
+    public function get_team() {
+        return $this->_team;
+    }
+
+    public function set_team($_team) {
+        $this->_team = $_team;
+    }
+
+
 
 
     

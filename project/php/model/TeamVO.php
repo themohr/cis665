@@ -16,18 +16,12 @@ class Team{
     
      //Relation
      private $_coachId;
+     private $_players;
      
     //Constructor
-     
-    function __construct($_teamId, $_teamName, $_coachId) {
-        $this->_teamId = $_teamId;
-        $this->_teamName = $_teamName;
-        $this->_coachId = $_coachId;
-    }
+ 
 
-    public function Team(){
-         
-    }
+    public function Team(){  }
     
     //Methods
     
@@ -51,9 +45,18 @@ class Team{
         $this->_teamName = $_teamName;
     }
 
-    public function set_coachId($_coachId) {
+   public function set_coachId($_coachId) {
         $this->_coachId = $_coachId;
     }
+
+    public function get_players() {
+        return $this->_players;
+    }
+
+    public function set_players($_players) {
+        $this->_players = $_players;
+    }
+
 
 
     

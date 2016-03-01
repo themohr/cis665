@@ -26,22 +26,10 @@ class Tournament{
      //Relation
     
     private $_sportTypeId;
+    private $_registrations;
        
     //Constructor
-    
-    function __construct($_tournamentId, $_tournamentName, $_tournamentDate, $_tournamentBeginTime, $_tournamentEndTime, $_tournamentStreet, $_tourcenameCity, $_tournamentState, $_tournamentZip, $_sportTypeId) {
-        $this->_tournamentId = $_tournamentId;
-        $this->_tournamentName = $_tournamentName;
-        $this->_tournamentDate = $_tournamentDate;
-        $this->_tournamentBeginTime = $_tournamentBeginTime;
-        $this->_tournamentEndTime = $_tournamentEndTime;
-        $this->_tournamentStreet = $_tournamentStreet;
-        $this->_tourcenameCity = $_tourcenameCity;
-        $this->_tournamentState = $_tournamentState;
-        $this->_tournamentZip = $_tournamentZip;
-        $this->_sportTypeId = $_sportTypeId;
-    }
-
+  
      public function Tournament(){}
         
 
@@ -129,9 +117,16 @@ class Tournament{
     }
 
   
-  
+    public function get_registrations() {
+        return $this->_registrations;
+    }
+
+    public function set_registrations($_registrations) {
+        $this->_registrations = $_registrations;
+    }
+
+
    
-    
 }//end of class
 
 ?>

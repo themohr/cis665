@@ -1,0 +1,19 @@
+/**
+ * 	Themes.css
+ * Styles for color and design of backgrounds, text, etc.
+ */
+.background {
+	width: 100%;
+}
+.background-dark {
+	background-color: #002b36;
+}
+.background-dark h1,
+.background-dark h2,
+.background-dark h3,
+.background-dark h4,
+.background-dark p,
+.background-dark li,
+.background-dark a {
+	color: #FFFFFF;
+}

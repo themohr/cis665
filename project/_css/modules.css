@@ -1,0 +1,14 @@
+/**
+ * 	Modules.css
+ *  Styles for unique site components
+ *  navigation, footer, contextual areas
+ */
+.nav-main {
+	width: 100%;
+}
+.nav-main-item {
+	display: inline-block;
+}
+.nav-main-item a {
+	padding: 10px 20px;
+}

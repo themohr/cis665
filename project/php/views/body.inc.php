@@ -3,12 +3,10 @@
 	<section class="container">
 		<div class="row">
 			
-				<?php require_once("lib/ProcessView.class.php");
-					
-					$view = new ProcessView();
-					//echo $view->displayView($_SERVER['QUERY_STRING']);
-					include($view->displayView($_SERVER['QUERY_STRING']));
-					
+				<?php
+					@require_once("dao/PageDAO.php");
+					echo buildPage($_SERVER['QUERY_STRING'],"Title");
+					@include(buildPage($_SERVER['QUERY_STRING'],"Title"));
 				?>
 			
 		</div>

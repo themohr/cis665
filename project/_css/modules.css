@@ -3,6 +3,9 @@
  *  Styles for unique site components
  *  navigation, footer, contextual areas
  */
+.site-title {
+	text-align: center;
+}
 .nav-main {
 	width: 100%;
 }
@@ -10,5 +13,6 @@
 	display: inline-block;
 }
 .nav-main-item a {
+	display: block;
 	padding: 10px 20px;
 }

@@ -4,6 +4,7 @@
  *
  * login.php
  */
+$this->setTitle("Login");
 ?>
 
 <form id="login" name="login" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">

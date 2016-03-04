@@ -10,6 +10,7 @@
 
 
 define("ADD","ADD");
+define("CREATE","CREATE");
 define("UPDATE","UPDATE");
 define("DELETE","DELETE");
 define("SUCCESS","SUCCESS");

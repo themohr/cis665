@@ -5,7 +5,6 @@
 			
 				<?php
 					@require_once("dao/PageDAO.php");
-					echo buildPage($_SERVER['QUERY_STRING'],"Title");
 					@include(buildPage($_SERVER['QUERY_STRING'],"Title"));
 				?>
 			

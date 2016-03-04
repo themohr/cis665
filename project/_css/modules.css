@@ -7,7 +7,7 @@
 	text-align: center;
 }
 .nav-main {
-	width: 100%;
+	display: inline-block;
 }
 .nav-main-item {
 	display: inline-block;
@@ -15,4 +15,29 @@
 .nav-main-item a {
 	display: block;
 	padding: 10px 20px;
+}
+
+/* forms */
+.forms {
+	position: relative;
+	width: 360px;
+}
+.form label {
+	display: inline-block;
+	min-width: 135px;
+	text-align: right;
+}
+.form input {
+	display: inline-block;
+	min-width: 200px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+.form input[type=submit] {
+	float: right;
+}
+
+/* Content */
+.content {
+	padding: 20px;
 }

@@ -6,7 +6,7 @@
 	width: 100%;
 }
 .background-dark {
-	background-color: #002b36;
+	background-color: #002B36;
 }
 .background-dark h1,
 .background-dark h2,
@@ -16,4 +16,21 @@
 .background-dark li,
 .background-dark a {
 	color: #FFFFFF;
+}
+.background-light {
+	background-color: #70B1C2;
+}
+.background-light h1,
+.background-light h2,
+.background-light h3,
+.background-light h4,
+.background-light p,
+.background-light li,
+.background-light a {
+	color: #002B36;
+}
+.background-light a:hover {
+	background-color: #002B36;
+	color: #70B1C2;
+	text-decoration: none;
 }

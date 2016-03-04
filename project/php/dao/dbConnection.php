@@ -58,10 +58,11 @@ function executeQuery($query)
 
 //Uncomment these 4 lines to display $results
        
-      //  echo '<pre style="font-size:large">';
-     //   print_r($results);
+     //  echo '<pre style="font-size:large">';
+     //   echo 'Result=';
+    //    print_r($results);
     //    echo '</pre>';
-    //    die;
+   //     die;
        
 //call dbDisconnect() method to close the connection
 
@@ -88,30 +89,31 @@ function executeProcedure($query)
     {
         // execute query and assign results to a PDOStatement object
 
-        //$stmt = $conn->query($query);
-         $stmt = $conn->query(Exec . $query);
+        $stmt = $conn->query(EXEC . $query);
 
-      //   $stmt->execute();
+        $result = $stmt->execute();
 
 //Uncomment these 4 lines to display $results
        
-       echo '<pre style="font-size:large">';
-        print_r($results);
-      echo '</pre>';
-        die;
+     //  echo '<pre style="font-size:large">';
+      // echo 'Result=';
+     //   print_r($result);
+     // echo '</pre>';
+     //   die;
        
 //call dbDisconnect() method to close the connection
 
         dbDisconnect($conn);
 
-        return $results;
+        return $result;
     }
     catch (PDOException $e)
     {
         //if execution fails
-
         dbDisconnect($conn);
-        die ('Query failed: ' . $e->getMessage());
+        throw new Exception($e->getMessage(), $e->getCode(), $e);
+        
+      //  die ('Query failed: ' . $e->getMessage());
     }
 }
 

@@ -1,46 +1,73 @@
 <?php
 
-
 /* 
  * Authors: Dennis Mohr, Nick Hoyle, Hemang Vyas
- * Date: 02/21/2016
+ * Date: 03/2/2016
  * Description: Coach Data Access Object
  *  
  */
 
+
 require_once ("dbConnection.php");
 require_once ("../model/CoachVO.php");
+require_once ("../commons/Constants.php");
 
 
-function getCoachList(){
+class  BaseDAO
+{
     
-   
-    // the SQL query to be executed on the database
-    $query = "Select COACH_ID, COACH_LNAME, COACH_FNAME,  COACH_EMAIL_ADDRESS, COACH_PASSWORD, COACH_TEAM_NAME
-            From dbo.COACH
-            Order by COACH_FNAME";
-   
-   // call the executeQuery method (in dbConnExec.php)
-   // and return the result
+     public function BaseDAO(){ }
+     
+     
+     public function processCUD($query, $action){
+         
+        $result = "NONE";
+        
+        print_r($query);
+        echo "<br/>";
+         
+        if(strcasecmp($action, CREATE) == 0){
+            //add coach record
+            try{
+                    $result = executeProcedure($query);
+                    //$result = "RECORD ADDED SUCCESSFULLY";
+                }catch(Exception $ex){
+                    $result = "ERROR ADDING RECORD";
+                    echo 'BaseDAO-ERROR ADDING RECORD: ' . $ex->getMessage();
+                    echo "<br/>";
+                }
 
-   $results =  executeQuery($query);
+        }
+        else if (strcasecmp($action, UPDATE) == 0){
+            //update coach record
+             try{
+                  $result = executeProcedure($query);
+                 // $result = "RECORD UPDATED SUCCESSFULLY";
+                 }catch(Exception $ex){
+                    $result = "ERROR UPDATING RECORD";
+                    echo 'BaseDAO-ERROR UPDATING RECORD: ' . $ex->getMessage();
+                    echo "<br/>";
+                }
 
-   $coachList = new ArrayObject();
-   
-   foreach ($results as $result) 
-    {
-        $coach = new Coach($result['COACH_ID'], $result['COACH_LNAME'], $result['COACH_FNAME'], 
-               $result['COACH_EMAIL_ADDRESS'],  $result['COACH_PASSWORD'],$result['COACH_TEAM_NAME']);
-        $coachList->append($coach);
-    }
+       }
+        else if(strcasecmp($action, DELETE) == 0){
+            //delete coach record 
+             try{
+                   $result = executeProcedure($query);
+                   //$result = "RECORD DELETED SUCCESSFULLY";
+                }catch(Exception $ex){
+                    $result = "ERROR DELETING RECORD";
+                    echo 'BaseDAO-ERROR DELETING RECORD: ' . $ex->getMessage();
+                    echo "<br/>";
+                }
 
-  
-    return $coachList;
+        }
+          
+        return $result;
+         
+     }// end of public function processCUD
     
 }
 
 
-
-
 ?>
-

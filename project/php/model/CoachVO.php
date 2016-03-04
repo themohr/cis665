@@ -18,7 +18,7 @@ class Coach
     private $_fname;
     private $_emailAddress;
     private $_password;
-    private $_teamName;
+    private $_oldEmailAddress;
     
     //Relation
     
@@ -51,9 +51,7 @@ class Coach
         return $this->_password;
     }
 
-    public function get_teamName() {
-        return $this->_teamName;
-    }
+  
 
     public function set_coachId($_coachId) {
         $this->_coachId = $_coachId;
@@ -75,16 +73,21 @@ class Coach
         $this->_password = $_password;
     }
 
-    public function set_teamName($_teamName) {
-        $this->_teamName = $_teamName;
-    }
-
+   
     public function get_team() {
         return $this->_team;
     }
 
     public function set_team($_team) {
         $this->_team = $_team;
+    }
+
+    public function get_oldEmailAddress() {
+        return $this->_oldEmailAddress;
+    }
+
+    public function set_oldEmailAddress($_oldEmailAddress) {
+        $this->_oldEmailAddress = $_oldEmailAddress;
     }
 
 

@@ -5,7 +5,7 @@
 <div class="col-md-12">
 	<h2>Locations/Tournament</h2>
 	<!-- Name, Sports Type, Date, Begin Time, End Time, Street, City State Zip -->
-        <p>Perform a search by entering in a tournament name and sport type</p>
+        <p>Perform a search by entering in a tournament name and sport type. If you are not looking for a particular sport, use a % for a wilde card search.</p><br>
         <div class="forms">
 		<form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
 		<label for="stype">Sport Type: </label>

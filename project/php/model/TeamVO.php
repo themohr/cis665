@@ -13,13 +13,13 @@ class Team{
      //Attributes
     private $_teamId;   
     private $_teamName;
-    
+    private $_oldTeamName; //for UpdateTeam stored procedure
      //Relation
      private $_coachId;
+     private $_coachEmailAddress; //Stored procedure expect this instead of a coachId
      private $_players;
      
-    //Constructor
- 
+    //Constructor 
 
     public function Team(){  }
     
@@ -32,7 +32,8 @@ class Team{
     public function get_teamName() {
         return $this->_teamName;
     }
-
+    
+  
     public function get_coachId() {
         return $this->_coachId;
     }
@@ -57,8 +58,24 @@ class Team{
         $this->_players = $_players;
     }
 
+    public function get_coachEmailAddress() {
+        return $this->_coachEmailAddress;
+    }
+
+    public function set_coachEmailAddress($_coachEmailAddress) {
+        $this->_coachEmailAddress = $_coachEmailAddress;
+    }
+
+    public function get_oldTeamName() {
+        return $this->_oldTeamName;
+    }
+
+    public function set_oldTeamName($_oldTeamName) {
+        $this->_oldTeamName = $_oldTeamName;
+    }
 
 
+    
     
 }
 

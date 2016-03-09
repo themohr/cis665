@@ -13,9 +13,7 @@ require_once ("BaseDAO.php");
 class CoachDAO extends BaseDAO
 {
     
-        public function CoachDAO(){ 
-          
-        }
+        public function CoachDAO(){ }
 
         public function getCoachList(){
 

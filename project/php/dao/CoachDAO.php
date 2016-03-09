@@ -49,7 +49,16 @@ class CoachDAO extends BaseDAO
         public function login($userId,$password){
             
             $query = "Select COACH_ID From dbo.COACH 
-                        where COACH_EMAIL_ADDRESS=".$userId." and COACH_PASSWORD =".$password;
+                        where COACH_EMAIL_ADDRESS='".$userId."' and COACH_PASSWORD ='".$password."'";
+            
+            $result =  executeQuery($query);
+            
+            if(count($result) == 1){
+                return SUCCESSFUL_LOGIN;
+            }
+            else{
+                return UNSUCCESSFUL_LOGIN;
+            }
             
         }
 

@@ -50,7 +50,7 @@ class TeamDAO extends BaseDAO{
                     }
                     else if (strcasecmp($action, UPDATE) == 0){
                         //update team record
-                         $query = " dbo.SP_UPDATE_TEAM '".$team->get_oldTeamName()."','".$team->get_oldTeamName()."','"
+                         $query = " dbo.SP_UPDATE_TEAM '".$team->get_oldTeamName()."','".$team->get_teamName()."','"
                                 .$coach->get_emailAddress()."'";
                     }
                     else if(strcasecmp($action, DELETE) == 0){

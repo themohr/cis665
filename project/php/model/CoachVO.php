@@ -16,7 +16,7 @@ class Coach
     private $_coachId;
     private $_lname;
     private $_fname;
-    private $_emailAddress;
+    private $_emailAddress; //this is a user-id
     private $_password;
     private $_oldEmailAddress;
     

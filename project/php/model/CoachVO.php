@@ -8,7 +8,7 @@
  */
 
 
-class Coach
+class CoachVO
 {
     //Attributes
    
@@ -27,7 +27,7 @@ class Coach
     //Constructor
     
      
-    public function Coach(){ }
+    public function CoachVO(){ }
     
     //Methods
     

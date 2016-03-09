@@ -8,7 +8,7 @@
  *  
  */
 
-class Team{
+class TeamVO{
     
      //Attributes
     private $_teamId;   
@@ -21,7 +21,7 @@ class Team{
      
     //Constructor 
 
-    public function Team(){  }
+    public function TeamVO(){  }
     
     //Methods
     

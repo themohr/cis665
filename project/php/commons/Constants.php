@@ -16,4 +16,8 @@ define("DELETE","DELETE");
 define("SUCCESS","SUCCESS");
 define("ERROR","ERROR");
 
+define("SUCCESSFUL_LOGIN","Login Successfully");
+define("UNSUCCESSFUL_LOGIN","Error logging in");
+
+
 ?>

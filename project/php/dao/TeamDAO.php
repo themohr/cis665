@@ -19,7 +19,7 @@ class TeamDAO{
        
         // the SQL query to be executed on the database
             $query = "Select TEAM_ID, TEAM_NAME From dbo.TEAM
-                    where by TEAM_COACH_ID =".$coachId;
+                    where TEAM_COACH_ID =".$coachId;
 
           $results =  executeQuery($query);
 

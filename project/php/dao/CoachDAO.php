@@ -31,7 +31,7 @@ class CoachDAO extends BaseDAO
 
            foreach ($results as $result) 
             {
-                $coach = new Coach();
+                $coach = new CoachVO();
                 $coach->set_coachId($result['COACH_ID']);
                 $coach->set_fname($result['COACH_FNAME']);
                 $coach->set_lname($result['COACH_LNAME']);

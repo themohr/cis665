@@ -76,8 +76,8 @@ class CoachDAO extends BaseDAO
                     }
                     
                      $result = parent::processCUD($query,$action); //or use $this->
-                     echo 'Result in CoachDAO=';
-                     print_r($result);
+                     echo 'Result in CoachDAO='.$result;
+                    return $result;
 
             }else{
                 return ERROR;

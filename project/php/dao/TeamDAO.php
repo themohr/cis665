@@ -11,7 +11,7 @@ require_once ("dbConnection.php");
 require_once ("../commons/Constants.php");
 require_once ("../model/TeamVO.php");
 
-class TeamDAO{
+class TeamDAO extends BaseDAO{
     
    public function TeamDAO(){ }
    
@@ -29,7 +29,7 @@ class TeamDAO{
             {
                 $team->set_teamId($result['TEAM_ID']);
                 $team->set_teamName($result['TEAM_NAME']);
-                $coachList->append($coach);
+                
             }
 
 
@@ -59,8 +59,8 @@ class TeamDAO{
                     }
                     
                      $result = parent::processCUD($query,$action); //or use $this->
-                     echo 'Result in TeamDAO=';
-                     print_r($result);
+                     echo 'Result in TeamDAO='.$result;
+                     return $result;
 
             }else{
                 return ERROR;

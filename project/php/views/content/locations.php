@@ -1,17 +1,12 @@
-<?php
-	@require_once('dao/FormDAO.php');
-	$process = new FormProcess();
-?>
 <div class="col-md-12">
-	<h2>Locations/Tournament</h2>
-	<!-- Name, Sports Type, Date, Begin Time, End Time, Street, City State Zip -->
+    <h2>Locations/Tournament</h2>
         <p>Perform a search by entering in a tournament name and sport type. If you are not looking for a particular sport, use a % for a wilde card search.</p><br>
         <div class="forms">
-		<form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
-		<label for="stype">Sport Type: </label>
-			<input type="listbox" name="stype" id="stype" required="required"/>
-		<input type="submit">
-	</form>
+        <form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
+        <label for="stype">Sport Type: </label>
+            <input type="listbox" name="stype" id="stype" required="required"/>
+        <input type="submit">
+    </form>
         <table>
                     <colgroup>
                      <col class="firstcol" />
@@ -30,8 +25,10 @@
                      </tr>
                   </thead>
         </table>
-<?php	
+<?php   
         require_once("LocationsDAO.php");
+        @require_once('dao/FormDAO.php');
+    $process = new FormProcess();
         
         $stype = $_POST('stype');
         
@@ -43,19 +40,20 @@
          extract($tournament);
          $recordsReturned ++;
           echo "<tr>";
-          echo "<td>" . $$tournament['TOURNAMENT_NAME'] . "</td>";
-          echo "<td>" . $$tournament['TOURNAMENT_DATE'] . "</td>";
-          echo "<td>" . $$tournament['TOURNAMENT_BEGIN_TIME'] . "</td>";
-          echo "<td>" . $$tournament['TOURNAMENT_END_TIME'] . "</td>";
-          echo "<td>" . $$tournament['SPORT_TYPE_NAME'] . "</td>";
-          echo "<td>" . $$tournament['TOURNAMENT_STREET'] . "</td>";
-          echo "<td>" . $$tournament['TOURNAMENT_CITY'] . "</td>";
-          echo "<td>" . $$tournament['TOURNAMENT_STATE_CODE'] . "</td>";
-          echo "<td>" . $$tournament['TOURNAMENT_ZIP'] . "</td>"  ;
+          echo "<td>" . $tournament['TOURNAMENT_NAME'] . "</td>";
+          echo "<td>" . $tournament['TOURNAMENT_DATE'] . "</td>";
+          echo "<td>" . $tournament['TOURNAMENT_BEGIN_TIME'] . "</td>";
+          echo "<td>" . $tournament['TOURNAMENT_END_TIME'] . "</td>";
+          echo "<td>" . $tournament['SPORT_TYPE_NAME'] . "</td>";
+          echo "<td>" . $tournament['TOURNAMENT_STREET'] . "</td>";
+          echo "<td>" . $tournament['TOURNAMENT_CITY'] . "</td>";
+          echo "<td>" . $tournament['TOURNAMENT_STATE_CODE'] . "</td>";
+          echo "<td>" . $tournament['TOURNAMENT_ZIP'] . "</td>"  ;
           echo "</tr>";
 
                 }
                 $process->validateForm($_POST);
 ?>     
             
+    </div>
 </div>

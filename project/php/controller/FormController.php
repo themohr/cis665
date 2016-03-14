@@ -6,10 +6,10 @@
  *  
  */
  
- class FormBaseDAO
+ class FormController
  {
  	
-	public function FormBaseDAO(){}
+	public function FormController(){}
 	
 	function cleanForm($input) {
 		
@@ -33,6 +33,29 @@
 		}
 		
 		return $form;	
+	}
+	
+	function validateEmail($field) {
+		
+		$atPos = strpos($field, '@');
+		
+		if(!$atPos) {
+			
+			return false;
+			
+		} else {
+			
+			$field_parts = explode('@',$field);
+			$dot_pos = strpos($field_parts[1],'.');
+			
+			if(!$dot_pos) {
+				return false;
+			}
+			
+		}
+
+		return true;
+		
 	}
  	
 	function cleanTextField($fieldValue) {

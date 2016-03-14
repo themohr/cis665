@@ -4,7 +4,7 @@
 		<div class="row">
 			
 				<?php
-					@require_once("dao/PageDAO.php");
+					@require_once("controller/PageController.php");
 					@include(buildPage($_SERVER['QUERY_STRING'],"Title"));
 				?>
 			

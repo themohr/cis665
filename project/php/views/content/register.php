@@ -1,8 +1,8 @@
 <?php
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
-	@require_once('dao/FormDAO.php');
-	$process = new FormDAO();
+	require_once('controller/FormRegister.php');
+	$process = new FormRegister();
 ?>
 <div class="col-md-12">
 	<h2>Coach Registration</h2>

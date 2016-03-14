@@ -7,7 +7,7 @@
  *  
  */
 
-require_once ("dbConnection.php");
+require_once ("dao/dbConnection.php");
 require_once ("model/PageVO.php");
 
 function buildPage($serverInfo,$title) {
@@ -24,6 +24,7 @@ function buildPage($serverInfo,$title) {
 	}
 	
 	return $file;
+
 	
 }
 ?>

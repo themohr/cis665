@@ -19,6 +19,7 @@
 }
 .background-light {
 	background-color: #70B1C2;
+	border-top: 2px solid #D4F80D;
 }
 .background-light h1,
 .background-light h2,

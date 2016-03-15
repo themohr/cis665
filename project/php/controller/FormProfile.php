@@ -8,7 +8,7 @@
  
  require_once('FormController.php');
  
- class FormRegister extends FormController
+ class FormProfile extends FormController
  {
  	
 	function displayForm($valid=true) {
@@ -37,7 +37,7 @@
 				<label for="teamName">Team Name:</label><input type="text" name="form[teamName]"<?php echo $teamNameValue; ?>><?php echo $teamNameError; ?><br>
 		 		<label for="emailAddress">Email Address:</label><input type="email" name="form[emailAddress]"<?php echo $emailValue; ?>><?php echo $emailError; ?><br>
 				<label for="password">Password:</label><input type="password" name="form[password]"><?php echo $passwordError; ?><br>
-				<input type="submit" name="process" value="Register">
+				<input type="submit" name="process" value="Update">
 			</form>
 		</div>
 		

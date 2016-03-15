@@ -6,5 +6,12 @@
  * Description: Profile page allows coach to view, update, delete and add a team
  *  
  */
- 
+  
+	@require_once('controller/FormProfile.php');
+	$profile = new FormProfile();
 ?>
+
+<div class="col-md-12">
+	<h1>Profile</h1>
+	<?php $profile->displayForm(); ?>
+</div>

@@ -27,6 +27,7 @@ class Tournament{
     
     private $_sportTypeId;
     private $_registrations;
+    private $_sportTypeName;
        
     //Constructor
   
@@ -123,6 +124,14 @@ class Tournament{
 
     public function set_registrations($_registrations) {
         $this->_registrations = $_registrations;
+    }
+
+    public function get_sportTypeName() {
+        return $this->_sportTypeName;
+    }
+
+    public function set_sportTypeName($_sportTypeName) {
+        $this->_sportTypeName = $_sportTypeName;
     }
 
 

@@ -5,9 +5,21 @@
         <form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
         <label for="stype">Sport Type: </label>
             <input type="listbox" name="stype" id="stype" required="required"/>
-        <input type="submit">
+        <input type="submit" name="process">
     </form>
-        <table>
+       
+<?php   
+
+            echo '<br />';
+         echo '=====entering====';
+         
+          echo '<br />';
+          if(isset($_POST['process'])){
+              
+              
+      ?>
+            
+             <table>
                     <colgroup>
                      <col class="firstcol" />
                   </colgroup>
@@ -25,18 +37,49 @@
                      </tr>
                   </thead>
         </table>
-<?php   
-        require_once("LocationsDAO.php");
-        @require_once('dao/FormDAO.php');
-    $process = new FormProcess();
+            
+          <?php  
+         //   print_r($_POST);
+         //  include("dao/LocationsDAO.php"); 
+            require_once("dao/LocationsDAO.php");
+       // $process = new FormProcess();
+          
+            $stype = $_POST['stype'];
+             echo '<br />';
+             echo 'stype='.$stype;
+
+              echo '<br />';
+
+              $locDAO = new LocationsDAO(); 
+              $locList = $locDAO->getTournaments($stype);
+             // print_r($locList);
+             //$tournamentList = getTournaments($stype);
+            //$recordsReturned = count($tournamentsLIst);
+             $recordsReturned = count($locList);
+
+              $iterator = $locList->getIterator();
+
+             while ($iterator->valid()) {
+
+                $tournament = $iterator->current();
+                echo "<tr>";
+                echo "<td>" . $tournament->get_tournamentName() . "</td>";
+                echo "<td>" . $tournament->get_tournamentDate() . "</td>";
+                echo "<td>" . $tournament->get_tournamentBeginTime() . "</td>";
+                echo "<td>" . $tournament->get_tournamentEndTime() . "</td>";
+                echo "<td>" . $tournament->get_sportTypeName() . "</td>";
+                echo "<td>" . $tournament->get_tournamentStreet() . "</td>";
+                echo "<td>" . $tournament->get_tourcenameCity() . "</td>";
+                echo "<td>" . $tournament->get_tournamentState() . "</td>";
+                echo "<td>" . $tournament->get_tournamentZip() . "</td>"  ;
+                echo "</tr>";
+
+                $iterator->next();
+            }
+          }
         
-        $stype = $_POST('stype');
-        
-        $tournamentList = getTournaments($stype);
-        $recordsReturned = count($tournamentsLIst);
-        
-        $recordsReturned = 0;
-        foreach ($tournamentList as $tournament){
+       // $recordsReturned = 0;
+       /* foreach ($tournamentList as $tournament){
          extract($tournament);
          $recordsReturned ++;
           echo "<tr>";
@@ -52,7 +95,9 @@
           echo "</tr>";
 
                 }
-                $process->validateForm($_POST);
+        * 
+        */
+              //  $process->validateForm($_POST);
 ?>     
             
     </div>

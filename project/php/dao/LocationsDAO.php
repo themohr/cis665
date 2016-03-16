@@ -12,6 +12,8 @@ require_once ("../commons/Constants.php");
 require_once ("../model/TournamentVO.php");
 
 class Tournaments{
+    
+    public function Tournaments(){}
 
     public function getTournaments($stype){
             
@@ -42,10 +44,12 @@ STR;
                     } 
             $results = executeQuery($query);
             
-            $locations = new Tournament();
+            
+            $locList = new ArrayObject();
             
              foreach ($results as $result) 
             {
+                $locations = new Tournament();
                 $locations->set_tournamentName($result['TOURNAMENT_NAME']);
                 $locations->set_tournamentDate($result['TOURNAMENT_DATE']);
                 $locations->set_tournamentBeginTime($result['TOURNAMENT_BEGIN_TIME']);
@@ -55,9 +59,10 @@ STR;
                 $locations->set_tourcenameCity($result['TOURNAMENT_CITY']);
                 $locations->set_tournamentState($result['TOURNAMENT_STATE_CODE']);
                 $locations->set_tournamentZip($result['TOURNAMENT_ZIP']);
+                $locList->append($locations);
             }
 
 
-            return $locations;
+            return $locList;
         }
 }

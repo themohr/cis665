@@ -7,7 +7,7 @@
  *  
  */
 
-Class Player
+Class PlayerVO
 {
     //Attributes
      private $_playerId;
@@ -17,17 +17,18 @@ Class Player
      private $_height;
      private $_weight;
      private $_gender;
-    
+     private $_email;
+     private $_newEmail;
 
     //Relation
      
      private $_teamId;
-     
-     
+     private $_teamName; //for stored procedure purpose
+    
     // Constructor
   
 
-    public function Player(){  }
+    public function PlayerVO(){  }
      
 
      //Methods
@@ -96,7 +97,32 @@ Class Player
          $this->_teamId = $_teamId;
      }
     
-    
+     public function get_teamName() {
+         return $this->_teamName;
+     }
+
+     public function set_teamName($_teamName) {
+         $this->_teamName = $_teamName;
+     }
+
+     public function get_email() {
+         return $this->_email;
+     }
+
+     public function get_newEmail() {
+         return $this->_newEmail;
+     }
+
+     public function set_email($_email) {
+         $this->_email = $_email;
+     }
+
+     public function set_newEmail($_newEmail) {
+         $this->_newEmail = $_newEmail;
+     }
+
+
+
 }
 
 

@@ -9,8 +9,7 @@
 
 
 require_once ("dbConnection.php");
-require_once ("../model/CoachVO.php");
-require_once ("../commons/Constants.php");
+require_once ("commons/Constants.php");
 
 
 class  BaseDAO

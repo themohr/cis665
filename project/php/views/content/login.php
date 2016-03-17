@@ -28,6 +28,7 @@
 			
 			$user = array('user' => $GLOBALS['form']['emailAddress']['response'],'role' => '');
 			
+			
 			echo '<pre>';
 			print_r($user);
 			echo '</pre>';

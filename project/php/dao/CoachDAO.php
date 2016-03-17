@@ -9,6 +9,8 @@
  */
 
 require_once ("BaseDAO.php");
+require_once ("model/CoachVO.php");
+
 
 class CoachDAO extends BaseDAO
 {

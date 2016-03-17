@@ -1,4 +1,6 @@
 <?php
+ini_set("display_errors",1);
+error_reporting(E_ALL);
 /* 
  * Authors: Dennis Mohr, Nick Hoyle, Hemang Vyas
  * Date: 03/02/2016
@@ -7,6 +9,7 @@
  */
  
  require_once('FormController.php');
+ require_once('dao/CoachDAO.php');
  
  class FormRegister extends FormController
  {
@@ -21,9 +24,6 @@
 		$lNameError = (isset($GLOBALS['form']['lname']['error']) && !empty($GLOBALS['form']['lname']['error']) ? ' <span class="error">Error: ' . htmlentities($GLOBALS['form']['lname']['error']) . "</span>" : "" );
 		$lNameValue = (isset($GLOBALS['form']['lname']['response']) && !empty($GLOBALS['form']['lname']['response']) ? ' value="' . htmlentities($GLOBALS['form']['lname']['response']) .'""' : "");
 
-		$teamNameError = (isset($GLOBALS['form']['teamName']['error']) && !empty($GLOBALS['form']['teamName']['error']) ? ' <span class="error">Error: ' . htmlentities($GLOBALS['form']['teamName']['error']) . "</span>" : "" );
-		$teamNameValue = (isset($GLOBALS['form']['teamName']['response']) && !empty($GLOBALS['form']['teamName']['response']) ? ' value="' . htmlentities($GLOBALS['form']['teamName']['response']) .'""' : "");
-		
 		$emailError = (isset($GLOBALS['form']['emailAddress']['error']) && !empty($GLOBALS['form']['emailAddress']['error']) ? ' <span class="error">Error: ' . htmlentities($GLOBALS['form']['emailAddress']['error']) . "</span>" : "" );
 		$emailValue = (isset($GLOBALS['form']['emailAddress']['response']) && !empty($GLOBALS['form']['emailAddress']['response']) ? ' value="' . htmlentities($GLOBALS['form']['emailAddress']['response']) .'""' : "");
 		
@@ -34,7 +34,6 @@
 			<form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
 				<label for="fname">First Name:</label> <input type="text" name="form[fname]"<?php echo $fNameValue; ?>><?php echo $fNameError; ?><br>
 				<label for="lname">Last Name:</label> <input type="text" name="form[lname]"<?php echo $lNameValue; ?>><?php echo $lNameError; ?><br>
-				<label for="teamName">Team Name:</label><input type="text" name="form[teamName]"<?php echo $teamNameValue; ?>><?php echo $teamNameError; ?><br>
 		 		<label for="emailAddress">Email Address:</label><input type="email" name="form[emailAddress]"<?php echo $emailValue; ?>><?php echo $emailError; ?><br>
 				<label for="password">Password:</label><input type="password" name="form[password]"><?php echo $passwordError; ?><br>
 				<input type="submit" name="process" value="Register">
@@ -56,11 +55,6 @@
 		if(!isset($GLOBALS['form']['lname']['response']) ||
 			empty($GLOBALS['form']['lname']['response'])) {
 				$GLOBALS['form']['lname']['error'] = "Required fields must be completed.";
-			}
-		
-		if(!isset($GLOBALS['form']['teamName']['response']) ||
-			empty($GLOBALS['form']['teamName']['response'])) {
-				$GLOBALS['form']['teamName']['error'] = "Required fields must be completed.";
 			}
 		
 		if(!isset($GLOBALS['form']['emailAddress']['response']) ||
@@ -86,6 +80,19 @@
 	}
 	
 	
+	function insertCoach($arrayObj) {
+		
+		$coachDao = new CoachDAO();
+		$coach = new CoachVO();
+		
+		$coach->set_fname($arrayObj[0]);
+		$coach->set_lname($arrayObj[1]);
+		$coach->set_emailAddress($arrayObj[2]);
+		$coach->set_password($arrayObj[3]);
+		
+		$coachDao->cudCoach($coach,CREATE);
+		
+	}
 	
  }
  

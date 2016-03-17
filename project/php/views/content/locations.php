@@ -1,3 +1,4 @@
+@@ -1,104 +0,0 @@
 <div class="col-md-12">
     <h2>Locations/Tournament</h2>
         <p>Perform a search by entering in a tournament name and sport type. If you are not looking for a particular sport, use a % for a wilde card search.</p><br>

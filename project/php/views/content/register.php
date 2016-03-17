@@ -27,6 +27,14 @@
 			
 		} else {
 			
+			$arrayObj = new ArrayObject();
+						
+			$arrayObj->append($GLOBALS['form']['fname']['response']);
+			$arrayObj->append($GLOBALS['form']['lname']['response']);
+			$arrayObj->append($GLOBALS['form']['emailAddress']['response']);
+			$arrayObj->append($GLOBALS['form']['password']['response']);
+			
+			$process->insertCoach($arrayObj);
 			echo "You have been successfully registered!";
 			
 		}

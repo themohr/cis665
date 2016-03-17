@@ -8,7 +8,7 @@
  *  
  */
 
-class Registration
+class RegistrationVO
 {
     //Attributes
     private $_registrationId;
@@ -18,10 +18,13 @@ class Registration
     private $_teamId;
     private $_tournamentId;
      
+    private $_teamName; //for regisration stored procedure
+    private $_tournamentName; //for regisration stored procedure
+    private $_newTournamentName; //for regisration stored procedure
     //Constructor
     
    
-    public function Registration (){}
+    public function RegistrationVO (){}
 
     
     //Methods
@@ -59,8 +62,32 @@ class Registration
     }
 
 
-    
-    
+    public function get_teamName() {
+        return $this->_teamName;
+    }
+
+    public function get_tournamentName() {
+        return $this->_tournamentName;
+    }
+
+    public function set_teamName($_teamName) {
+        $this->_teamName = $_teamName;
+    }
+
+    public function set_tournamentName($_tournamentName) {
+        $this->_tournamentName = $_tournamentName;
+    }
+
+
+    public function get_newTournamentName() {
+        return $this->_newTournamentName;
+    }
+
+    public function set_newTournamentName($_newTournamentName) {
+        $this->_newTournamentName = $_newTournamentName;
+    }
+
+
     
 }
 

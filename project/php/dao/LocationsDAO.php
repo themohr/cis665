@@ -19,9 +19,9 @@ class LocationsDAO{
             
             $query = <<<STR
                       SELECT TOURNAMENT_NAME, 
-                             TOURNAMENT_DATE, 
-                             TOURNAMENT_BEGIN_TIME, 
-                             TOURNAMENT_END_TIME, 
+                             CONVERT(VARCHAR(10), TOURNAMENT_DATE, 101) AS TOURNAMENT_DATE, 
+                             Right(IsNull(Convert(Varchar,TOURNAMENT_BEGIN_TIME,100),''),7) AS TOURNAMENT_BEGIN_TIME, 
+                             Right(IsNull(Convert(Varchar,TOURNAMENT_END_TIME,100),''),7) AS TOURNAMENT_END_TIME, 
                              SPORT_TYPE_ID,
                              SPORT_TYPE_NAME,
                              TOURNAMENT_STREET, 
@@ -45,7 +45,6 @@ STR;
                     } 
             $results = executeQuery($query);
             
-            
             $locList = new ArrayObject();
             
              foreach ($results as $result) 
@@ -56,15 +55,13 @@ STR;
                 $locations->set_tournamentBeginTime($result['TOURNAMENT_BEGIN_TIME']);
                 $locations->set_tournamentEndTime($result['TOURNAMENT_END_TIME']);
                 $locations->set_sportTypeId($result['SPORT_TYPE_ID']);
-                 $locations->set_sportTypeName($result['SPORT_TYPE_NAME']);
+                $locations->set_sportTypeName($result['SPORT_TYPE_NAME']);
                 $locations->set_tournamentStreet($result['TOURNAMENT_STREET']);
                 $locations->set_tourcenameCity($result['TOURNAMENT_CITY']);
                 $locations->set_tournamentState($result['TOURNAMENT_STATE_CODE']);
                 $locations->set_tournamentZip($result['TOURNAMENT_ZIP']);
                 $locList->append($locations);
             }
-
-
             return $locList;
         }
 }

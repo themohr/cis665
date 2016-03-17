@@ -11,12 +11,7 @@
        
 <?php   
 
-            echo '<br />';
-         echo '=====entering====';
-         
-          echo '<br />';
           if(isset($_POST['process'])){
-              
               
       ?>
             
@@ -40,25 +35,17 @@
         </table>
             
           <?php  
-         //   print_r($_POST);
-         //  include("dao/LocationsDAO.php"); 
             require_once("dao/LocationsDAO.php");
-       // $process = new FormProcess();
+
           
             $stype = $_POST['stype'];
-             echo '<br />';
-             echo 'stype='.$stype;
 
-              echo '<br />';
+            $locDAO = new LocationsDAO(); 
+            $locList = $locDAO->getTournaments($stype);
 
-              $locDAO = new LocationsDAO(); 
-              $locList = $locDAO->getTournaments($stype);
-             // print_r($locList);
-             //$tournamentList = getTournaments($stype);
-            //$recordsReturned = count($tournamentsLIst);
-             $recordsReturned = count($locList);
+            $recordsReturned = count($locList);
 
-              $iterator = $locList->getIterator();
+            $iterator = $locList->getIterator();
 
              while ($iterator->valid()) {
 
@@ -78,27 +65,6 @@
                 $iterator->next();
             }
           }
-        
-       // $recordsReturned = 0;
-       /* foreach ($tournamentList as $tournament){
-         extract($tournament);
-         $recordsReturned ++;
-          echo "<tr>";
-          echo "<td>" . $tournament['TOURNAMENT_NAME'] . "</td>";
-          echo "<td>" . $tournament['TOURNAMENT_DATE'] . "</td>";
-          echo "<td>" . $tournament['TOURNAMENT_BEGIN_TIME'] . "</td>";
-          echo "<td>" . $tournament['TOURNAMENT_END_TIME'] . "</td>";
-          echo "<td>" . $tournament['SPORT_TYPE_NAME'] . "</td>";
-          echo "<td>" . $tournament['TOURNAMENT_STREET'] . "</td>";
-          echo "<td>" . $tournament['TOURNAMENT_CITY'] . "</td>";
-          echo "<td>" . $tournament['TOURNAMENT_STATE_CODE'] . "</td>";
-          echo "<td>" . $tournament['TOURNAMENT_ZIP'] . "</td>"  ;
-          echo "</tr>";
-
-                }
-        * 
-        */
-              //  $process->validateForm($_POST);
 ?>     
             
     </div>

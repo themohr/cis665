@@ -7,8 +7,7 @@
  *  
  */
 
-require_once ("dbConnection.php");
-require_once ("commons/Constants.php");
+require_once ("BaseDAO.php");
 require_once ("model/PlayerVO.php");
 
 class PlayerDAO extends BaseDAO{

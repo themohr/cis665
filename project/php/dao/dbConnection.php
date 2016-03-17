@@ -89,7 +89,7 @@ function executeProcedure($query)
     {
         // execute query and assign results to a PDOStatement object
 
-        $stmt = $conn->query(EXEC . $query);
+        $stmt = $conn->query("EXEC" . $query);
 
         $result = $stmt->execute();
 

@@ -14,7 +14,7 @@ class PlayerDAO extends BaseDAO{
     
    public function PlayerDAO(){ }
    
-   public function getPlayersByTeam($teamId){
+   public function getPlayersByTeamId($teamId){
        
         // the SQL query to be executed on the database
             $query = "Select PLAYER_ID, PLAYER_FNAME, PLAYER_LNAME, PLAYER_HEIGHT,

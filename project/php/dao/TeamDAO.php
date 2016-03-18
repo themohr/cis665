@@ -58,7 +58,7 @@ class TeamDAO extends BaseDAO{
                     }
                     
                      $result = parent::processCUD($query,$action); //or use $this->
-                     echo 'Result in TeamDAO='.$result;
+                   //  echo 'Result in TeamDAO='.$result;
                      return $result;
 
             }else{

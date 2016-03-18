@@ -21,6 +21,11 @@ class RegistrationVO
     private $_teamName; //for regisration stored procedure
     private $_tournamentName; //for regisration stored procedure
     private $_newTournamentName; //for regisration stored procedure
+    
+    //objects
+    private $_team; //holds team object for read operation
+    private $_tournament; //holds tournament object for read operation
+    
     //Constructor
     
    
@@ -85,6 +90,22 @@ class RegistrationVO
 
     public function set_newTournamentName($_newTournamentName) {
         $this->_newTournamentName = $_newTournamentName;
+    }
+
+    public function get_team() {
+        return $this->_team;
+    }
+
+    public function get_tournament() {
+        return $this->_tournament;
+    }
+
+    public function set_team($_team) {
+        $this->_team = $_team;
+    }
+
+    public function set_tournament($_tournament) {
+        $this->_tournament = $_tournament;
     }
 
 

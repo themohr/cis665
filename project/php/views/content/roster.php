@@ -1,4 +1,6 @@
-<div class="col-md-12">
+<?php
+	// If a team is created
+?>
 	<div class="content">
 		<form>
 			<input type="text" name="fname">
@@ -27,4 +29,5 @@
 		</table>
 		Delete team
 	</div>
-</div>
+	
+	<?php  // Team not created? Create team ?>

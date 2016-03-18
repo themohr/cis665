@@ -58,9 +58,7 @@
 		return $valid;
 		
 	}
-	
-	
-	
+
  }
  
  ?>

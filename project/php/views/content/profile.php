@@ -11,7 +11,11 @@
 	$profile = new FormProfile();
 ?>
 
-<div class="col-md-12">
+<div class="col-md-4">
 	<h1>Profile</h1>
 	<?php $profile->displayForm(); ?>
+</div>
+<div class="col-md-8">
+	<h1>Team Roster</h1>
+	<?php include('views/content/roster.php');?>
 </div>

@@ -6,6 +6,8 @@
         <form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
         <label for="stype">Sport Type: </label>
             <input type="listbox" name="stype" id="stype" required="required"/>
+        <label for="tname">Tournament Name: </label> 
+            <input type="text" name="tname" id="tname" required="required"/>
         <input type="submit" name="process">
     </form>
        
@@ -39,9 +41,10 @@
 
           
             $stype = $_POST['stype'];
+            $tname= $_POST['tname'];
 
             $locDAO = new LocationsDAO(); 
-            $locList = $locDAO->getTournaments($stype);
+            $locList = $locDAO->getTournaments($stype,$tname);
 
             $recordsReturned = count($locList);
 

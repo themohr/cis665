@@ -5,8 +5,10 @@
 	 * Description: Profile page allows coach to view, update, delete and add a team
 	 *  
 	 */
+        session_start();
 	require_once('controller/FormLogin.php');
 	require_once('dao/CoachDAO.php');
+        require_once('model/CoachVO.php');
 	$process = new FormLogin();
 ?>
 <div class="col-md-6">
@@ -34,13 +36,19 @@
 			$coachVO = new CoachVO();
 			$results = $coachDao->login($user, $password);
 			
-			if(results == SUCCESSFUL_LOGIN) {
+			if($results == SUCCESSFUL_LOGIN) {
 				
-				$coachVo = $coachDao->getCoachByCoachUserId($user);
+				$coachVO = $coachDao->getCoachByCoachUserId($user);
+                                
+                                
 			
-				$SESSION['emailAddress'] = $coachVO->get_emailAddress();
-				$SESSION['fname'] = $coachVO->get_fname();
-				$SESSION['lname'] = $coachVO->get_lname();
+				$_SESSION['emailAddress'] = $coachVO->get_emailAddress();
+				$_SESSION['fname'] = $coachVO->get_fname();
+				$_SESSION['lname'] = $coachVO->get_lname();
+                                
+                               session_write_close();
+                                
+                                echo '<a href="' . $_SERVER['PHP_SELF'] . '?page=profile">View profile</a>';
 				
 			} else {
 				echo "Sorry, unable to authenticate.";
@@ -51,9 +59,9 @@
 			print_r($results);
 			echo '</pre>';
 			
-			echo session_id();
+			//echo session_id();
 			
-			echo '<a href="' . $_SERVER['PHP_SELF'] . '?page=profile">View profile</a>';
+			
 			
 			
 		}

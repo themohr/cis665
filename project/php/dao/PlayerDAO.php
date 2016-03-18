@@ -36,7 +36,7 @@ class PlayerDAO extends BaseDAO{
                $player->set_gender($result['PLAYER_GENDER']);
                $player->set_height($result['PLAYER_HEIGHT']);
                $player->set_lname($result['PLAYER_LNAME']);
-               $player->set_teamId($_teamId);
+               $player->set_teamId($teamId);
                $player->set_teamName($result['TEAM_NAME']);
                $player->set_weight($result['PLAYER_WEIGHT']);
                 $playerList->append($player);

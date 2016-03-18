@@ -16,6 +16,35 @@ class CoachDAO extends BaseDAO
 {
     
         public function CoachDAO(){ }
+        
+        public function getCoachByCoachUserId($userid){
+
+
+            // the SQL query to be executed on the database
+            $query = "Select COACH_ID, COACH_LNAME, COACH_FNAME,  COACH_EMAIL_ADDRESS, COACH_PASSWORD From dbo.COACH
+                    where COACH_EMAIL_ADDRESS = '" . $userid . "'";
+
+        
+           $results =  executeQuery($query);
+
+            $coach = new CoachVO();
+
+           foreach ($results as $result) 
+            {
+               
+                $coach->set_coachId($result['COACH_ID']);
+                $coach->set_fname($result['COACH_FNAME']);
+                $coach->set_lname($result['COACH_LNAME']);
+                $coach->set_password($result['COACH_PASSWORD']);
+                $coach->set_emailAddress($result['COACH_EMAIL_ADDRESS']);
+              
+               
+            }
+
+
+            return $coach;
+
+        }
 
         public function getCoachList(){
 

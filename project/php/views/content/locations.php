@@ -1,12 +1,12 @@
 <div class="col-md-12">
     <h2>Locations/Tournament</h2>
-        <p>Perform a search by entering in a tournament name and sport type. If you are not looking for a particular sport, use a % for a wilde card search.</p><br>
+        <p>Perform a search by entering in a tournament name and/or sport type.</p><br>
         <div class="forms">
         <form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
         <label for="stype">Sport Type: </label>
-            <input type="listbox" name="stype" id="stype" required="required"/>
+            <input type="listbox" name="stype" id="stype"/>
         <label for="tname">Tournament Name: </label> 
-            <input type="text" name="tname" id="tname" required="required"/>
+            <input type="text" name="tname" id="tname"/>
         <input type="submit" name="process">
     </form>
        

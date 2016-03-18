@@ -15,7 +15,7 @@ class LocationsDAO{
     
     public function LocationsDAO(){}
 
-    public function getTournaments($stype){
+    public function getTournaments($stype,$tname){
             
             $query = <<<STR
                       SELECT TOURNAMENT_NAME, 
@@ -34,13 +34,15 @@ class LocationsDAO{
                        WHERE 0=0
 STR;
 STR;
-                    if ($stype != ''){
+                    if ($stype != '' && $tname != ''){
                     $query .= <<<STR
                         AND UPPER(SPORT_TYPE_NAME) LIKE UPPER('%$stype%')
+                        AND UPPER(TOURNAMENT_NAME) LIKE UPPER('%$tname%')
 STR;
-                    }if ($stype = ''){
+                    }if ($stype = '%' && $tname = '%'){
                     $query .= <<<STR
                         AND SPORT_TYPE_NAME IS NOT NULL
+                        AND TOURNAMENT_NAME IS NOT NULL
 STR;
                     } 
             $results = executeQuery($query);

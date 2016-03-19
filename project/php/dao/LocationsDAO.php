@@ -37,7 +37,11 @@ STR;
                     $query .= <<<STR
                         AND SPORT_TYPE_NAME IS NOT NULL
 STR;
-                    }else if($stype != ''){
+                    }else if (strpos($stype, '%') !== FALSE){
+                    $query .= <<<STR
+                        AND UPPER(SPORT_TYPE_NAME) LIKE UPPER('$stype')
+STR;
+                    }else if($stype != NULL){
                     $query .= <<<STR
                         AND UPPER(SPORT_TYPE_NAME) = UPPER('$stype')
 STR;
@@ -46,15 +50,19 @@ STR;
                     $query .= <<<STR
                         AND TOURNAMENT_NAME IS NOT NULL
 STR;
-                    }else if($tname != ''){
+                    }else if (strpos($tname, '%') !== FALSE){
+                    $query .= <<<STR
+                        AND UPPER(TOURNAMENT_NAME) LIKE UPPER('$tname')
+STR;
+                    }else if($tname != NULL){
                     $query .= <<<STR
                         AND UPPER(TOURNAMENT_NAME) = UPPER('$tname')
 STR;
                     }                    
-                    if ($tname == '' && $stype == ''){
+                    if ($tname == NULL && $stype == NULL){
                     $query .= <<<STR
-                        AND TOURNAMENT_NAME IS NULL
-                        AND SPORT_TYPE_NAME IS NULL
+                        AND TOURNAMENT_NAME IS NOT NULL
+                        AND SPORT_TYPE_NAME IS NOT NULL
 STR;
                     }
             $results = executeQuery($query);

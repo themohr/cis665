@@ -1,6 +1,6 @@
 <div class="col-md-12">
     <h2>Locations/Tournament</h2>
-        <p>Perform a search by entering in a tournament name and/or sport type.</p><br>
+        <p>Perform a search by entering in a tournament name and/or sport type.The % value can be utilized for a wild card search.</p><br>
         <div class="forms">
         <form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
         <label for="stype">Sport Type: </label>

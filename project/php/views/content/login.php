@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 	/* 
 	 * Authors: Dennis Mohr, Nick Hoyle, Hemang Vyas
 	 * Date: 03/03/2016
@@ -34,27 +36,26 @@
 			$coachVO = new CoachVO();
 			$results = $coachDao->login($user, $password);
 			
-			if(results == SUCCESSFUL_LOGIN) {
+			if($results == SUCCESSFUL_LOGIN) {
 				
-				$coachVo = $coachDao->getCoachByCoachUserId($user);
-			
+				$coachVO = $coachDao->getCoachByCoachUserId($user);
+				
+				$SESSION['sessionid'] = session_id();
 				$SESSION['emailAddress'] = $coachVO->get_emailAddress();
 				$SESSION['fname'] = $coachVO->get_fname();
 				$SESSION['lname'] = $coachVO->get_lname();
 				
+				echo '<pre>';
+				print_r($coachVO);
+				print_r($SESSION);
+				echo '</pre>';
+				
+				// Use header redirect
+				echo '<a href="' . $_SERVER['PHP_SELF'] . '?page=profile">View profile</a>';
+				
 			} else {
 				echo "Sorry, unable to authenticate.";
 			}
-
-			
-			echo '<pre>';
-			print_r($results);
-			echo '</pre>';
-			
-			echo session_id();
-			
-			echo '<a href="' . $_SERVER['PHP_SELF'] . '?page=profile">View profile</a>';
-			
 			
 		}
 		

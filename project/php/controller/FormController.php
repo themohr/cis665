@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 /* 
  * Authors: Dennis Mohr, Nick Hoyle, Hemang Vyas
  * Date: 03/02/2016

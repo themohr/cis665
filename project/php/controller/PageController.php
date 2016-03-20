@@ -18,14 +18,12 @@ function buildPage($serverInfo,$title) {
 	$page->setPath($serverInfo);
 	
 	if($page->getPath() !== "" && file_exists("views/content/" . substr($page->getPath(),5) . ".php")) {
-			
-		$file = include("views/content/" . substr($page->getPath(),5) . ".php");
-		
+		$file = "views/content/" . substr($page->getPath(),5) . ".php";
 	} elseif(substr($page->getPath(),5) == "logoff") {
 		session_destroy();
-		$file = include("views/content/home.php");
+		$file = "views/content/home.php";
 	} else {
-		$file = include("views/content/home.php");
+		$file = "views/content/home.php";
 	}
 	
 	return $file;

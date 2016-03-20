@@ -103,7 +103,8 @@ class PlayerDAO extends BaseDAO{
                     }
                     else if(strcasecmp($action, DELETE) == 0){
                         //delete team record 
-                         $query = " dbo.SP_DELETE_PLAYER '".$player->get_email()."','".$player->get_teamName()."'";
+                         //$query = " dbo.SP_DELETE_PLAYER '".$player->get_email()."','".$player->get_teamName()."'";
+                        $query = " dbo.SP_DELETE_PLAYER '".$player->get_playerId()."'";
                     }
                     
                      $result = parent::processCUD($query,$action); //or use $this->

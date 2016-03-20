@@ -46,6 +46,38 @@ class PlayerDAO extends BaseDAO{
             return $playerList;
        
    }
+   
+   public function getPlayerByPlayerId($playerId){
+       
+        // the SQL query to be executed on the database
+            $query = "Select PLAYER_ID, PLAYER_FNAME, PLAYER_LNAME, PLAYER_HEIGHT,PLAYER_TEAM_ID,
+                PLAYER_WEIGHT,PLAYER_GENDER,PLAYER_DOB,PLAYER_EMAIL_ADDRESS From dbo.PLAYER 
+                WHERE PLAYER_ID =".$playerId;
+
+          $results =  executeQuery($query);
+
+          $player = new PlayerVO(); 
+
+           foreach ($results as $result) 
+            {
+              
+               $player->set_playerId($result['PLAYER_ID']);
+               $player->set_dob($result['PLAYER_DOB']);
+               $player->set_email($result['PLAYER_EMAIL_ADDRESS']);
+               $player->set_fname($result['PLAYER_FNAME']);
+               $player->set_gender($result['PLAYER_GENDER']);
+               $player->set_height($result['PLAYER_HEIGHT']);
+               $player->set_lname($result['PLAYER_LNAME']);
+               $player->set_teamId($result['PLAYER_TEAM_ID']);
+               $player->set_teamName($result['TEAM_NAME']);
+               $player->set_weight($result['PLAYER_WEIGHT']);
+              
+            }
+
+
+            return $player;
+       
+   }
 
    public function cudPlayer($player, $action){
 

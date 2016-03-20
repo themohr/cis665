@@ -32,10 +32,7 @@
                         <th>State</th>
                         <th>Zip</th>
                      </tr>
-                  </thead>
-        </table>
-            
-          <?php  
+                     <?php  
             require_once("dao/LocationsDAO.php");
 
           
@@ -68,6 +65,10 @@
             }
           }
 ?>     
+                  </thead>
+        </table>
+            
+          
             
     </div>
 </div>

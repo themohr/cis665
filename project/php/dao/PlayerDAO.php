@@ -57,7 +57,8 @@ class PlayerDAO extends BaseDAO{
                         //add team record
                         $query = " dbo.SP_CREATE_PLAYER '".$player->get_fname()."','".$player->get_lname().
                                "','".$player->get_height()."','".$player->get_weight()."','".$player->get_gender().
-                               "','".$player->get_dob()."','".$player->get_teamName()."','".$player->get_email()."'";
+                               "','".$player->get_dob()."','".$player->get_email().
+							   "','" . $player->get_teamId() ."'";
                
                     }
                     else if (strcasecmp($action, UPDATE) == 0){

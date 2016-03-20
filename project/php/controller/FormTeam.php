@@ -50,8 +50,7 @@ class FormTeam extends FormController
 		$teamVO = new TeamVO();
 		
 		$teamVO->set_teamName($arrayObj[0]);
-		$teamVO->set_coachId($arrayObj[1]);
-		$teamVO->set_coachEmailAddress($arrayObj[2]);
+		$teamVO->set_coachEmailAddress($arrayObj[1]);
 		
 		$teamDAO->cudTeam($teamVO,CREATE);
 		

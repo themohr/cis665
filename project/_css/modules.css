@@ -41,3 +41,12 @@
 .content {
 	padding: 20px;
 }
+
+/* Table */
+table {
+	width: 100%;
+}
+table td {
+	border: 1px solid #002B36;
+	padding: 5px;
+}

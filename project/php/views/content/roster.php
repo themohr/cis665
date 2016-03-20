@@ -7,7 +7,6 @@
 	 * Description: Profile page allows coach to view, update, delete and add a team
 	 *  
 	 */
-	require_once('dao/TeamDAO.php');
 	require_once('dao/PlayerDAO.php');
 	require_once('controller/FormRoster.php');
 	require_once('controller/FormTeam.php');
@@ -15,11 +14,11 @@
 	$username = "dennis.m.mohr@gmail.com";
 	
 	$processPlayer = new FormRoster();
-	$teamDAO = new TeamDAO();
+	$playerDAO = new PlayerDAO();
 	$processTeam = new FormTeam();
+
 	// If a team is created
-	print_r($teamDAO->getTeamByCoachId(404));
-	if($teamDAO->getTeamByCoachId(67)) {
+	if(empty($playerDAO->getPlayersByTeamId(67))) {
 	
 ?>
 	<div class="content">
@@ -40,7 +39,6 @@
 				} else {
 					
 					$arrayObj = new ArrayObject();
-					
 					$arrayObj->append($GLOBALS['form']['fname']['response']);
 					$arrayObj->append($GLOBALS['form']['lname']['response']);
 					$arrayObj->append($GLOBALS['form']['height']['response']);
@@ -48,6 +46,7 @@
 					$arrayObj->append($GLOBALS['form']['gender']['response']);
 					$arrayObj->append($GLOBALS['form']['dob']['response']);
 					$arrayObj->append($GLOBALS['form']['emailAddress']['response']);
+					$arrayObj->append(20);
 
 					$processPlayer->insertPlayer($arrayObj);					
 					
@@ -56,6 +55,7 @@
 			}
 		?>
 		<table>
+			<tbody>
 			<tr>
 				<th>First Name</th>
 				<th>Last Name</th>
@@ -69,18 +69,21 @@
 			
 			$roster = $processPlayer->getRoster(20);
 			
-			echo "<pre>";
-			print_r($roster);
-			echo "<pre>";
-			
-			for($i = 0; $i <= 5; $i++) {
+			foreach($roster as $record) {
 				echo "<tr>";
-				echo "<td>Player " . $i . "</td>";
-				echo "<td>" . $i . "</td>";
-				echo "<td>Edit / Delete</td>";
+				echo "<td>" . $record->get_fname() . "</td>";
+				echo "<td>" . $record->get_lname() . "</td>";
+				echo "<td>" . $record->get_height() . "</td>";
+				echo "<td>" . $record->get_weight() . "</td>";
+				echo "<td>" . $record->get_gender() . "</td>";
+				echo "<td>" . $record->get_dob() . "</td>";
+				echo "<td>" . $record->get_email() . "</td>";
 				echo "</tr>";
+				
 			}
+			
 			?>
+			</tbody>
 		</table>
 		<a href="delete">Delete Team</a>Delete
 		<form name="tournamentRegister" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="post">
@@ -115,7 +118,6 @@
 				$arrayObj = new ArrayObject();
 				
 				$arrayObj->append($GLOBALS['form']['teamName']['response']);
-				$arrayObj->append('67');
 				$arrayObj->append('dennis.m.mohr@gmail.com');
 				
 				$processTeam->insertTeam($arrayObj);

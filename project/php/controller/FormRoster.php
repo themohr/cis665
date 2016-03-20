@@ -117,6 +117,7 @@ class FormRoster extends FormController
 		$player->set_gender($arrayObj[4]);
 		$player->set_dob($arrayObj[5]);
 		$player->set_email($arrayObj[6]);
+		$player->set_teamId($arrayObj[7]);
 		
 		$playerDao->cudPlayer($player,CREATE);
 	}
@@ -125,6 +126,8 @@ class FormRoster extends FormController
 		
 		$playerDao = new PlayerDAO();
 		$roster = $playerDao->getPlayersByTeamId($teamId);
+		
+		return $roster;
 		
 	}
 }

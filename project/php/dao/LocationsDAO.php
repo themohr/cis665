@@ -16,7 +16,7 @@ class LocationsDAO{
     public function LocationsDAO(){}
 
     public function getTournaments($stype,$tname){
-            
+
             $query = <<<STR
                       SELECT TOURNAMENT_NAME, 
                              CONVERT(VARCHAR(10), TOURNAMENT_DATE, 101) AS TOURNAMENT_DATE, 
@@ -33,18 +33,38 @@ class LocationsDAO{
                           ON SPORT_TYPE_ID = TOURNAMENT_SPORT_TYPE_ID
                        WHERE 0=0
 STR;
-STR;
-                    if ($stype != '' && $tname != ''){
-                    $query .= <<<STR
-                        AND UPPER(SPORT_TYPE_NAME) LIKE UPPER('%$stype%')
-                        AND UPPER(TOURNAMENT_NAME) LIKE UPPER('%$tname%')
-STR;
-                    }if ($stype = '%' && $tname = '%'){
+                    if ($stype == '%'){
                     $query .= <<<STR
                         AND SPORT_TYPE_NAME IS NOT NULL
+STR;
+                    }else if (strpos($stype, '%') !== FALSE){
+                    $query .= <<<STR
+                        AND UPPER(SPORT_TYPE_NAME) LIKE UPPER('$stype')
+STR;
+                    }else if($stype != NULL){
+                    $query .= <<<STR
+                        AND UPPER(SPORT_TYPE_NAME) = UPPER('$stype')
+STR;
+                    }
+                    if ($tname == '%'){
+                    $query .= <<<STR
                         AND TOURNAMENT_NAME IS NOT NULL
 STR;
-                    } 
+                    }else if (strpos($tname, '%') !== FALSE){
+                    $query .= <<<STR
+                        AND UPPER(TOURNAMENT_NAME) LIKE UPPER('$tname')
+STR;
+                    }else if($tname != NULL){
+                    $query .= <<<STR
+                        AND UPPER(TOURNAMENT_NAME) = UPPER('$tname')
+STR;
+                    }                    
+                    if ($tname == NULL && $stype == NULL){
+                    $query .= <<<STR
+                        AND TOURNAMENT_NAME IS NOT NULL
+                        AND SPORT_TYPE_NAME IS NOT NULL
+STR;
+                    }
             $results = executeQuery($query);
             
             $locList = new ArrayObject();

@@ -7,8 +7,10 @@ error_reporting(E_ALL);
 	 * Description: Profile page allows coach to view, update, delete and add a team
 	 *  
 	 */
+        session_start();
 	require_once('controller/FormLogin.php');
 	require_once('dao/CoachDAO.php');
+        require_once('model/CoachVO.php');
 	$process = new FormLogin();
 ?>
 <div class="col-md-6">
@@ -44,7 +46,7 @@ error_reporting(E_ALL);
 				$SESSION['emailAddress'] = $coachVO->get_emailAddress();
 				$SESSION['fname'] = $coachVO->get_fname();
 				$SESSION['lname'] = $coachVO->get_lname();
-				
+
 				echo '<pre>';
 				print_r($coachVO);
 				print_r($SESSION);

@@ -108,7 +108,7 @@ class CoachDAO extends BaseDAO
                     else if (strcasecmp($action, UPDATE) == 0){
                         //update coach record
                          $query = " dbo.SP_UPDATE_COACH '".$coach->get_fname()."','".$coach->get_lname()."','"
-                                .$coach->get_oldEmailAddress()."','".$coach->get_emailAddress()."'";
+                                .$coach->get_oldEmailAddress()."','".$coach->get_emailAddress()."','".$coach->get_password()."'";
             }
                     else if(strcasecmp($action, DELETE) == 0){
                         //delete coach record 
@@ -116,7 +116,7 @@ class CoachDAO extends BaseDAO
                     }
                     
                      $result = parent::processCUD($query,$action); //or use $this->
-                     echo 'Result in CoachDAO='.$result;
+                  //   echo 'Result in CoachDAO='.$result;
                     return $result;
 
             }else{

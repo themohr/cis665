@@ -22,7 +22,7 @@ class  BaseDAO
          
         $result = "NONE";
         
-        print_r($query);
+        //print_r($query);
         echo "<br/>";
          
         if(strcasecmp($action, CREATE) == 0){

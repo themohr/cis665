@@ -20,9 +20,13 @@
 			<div class="col-md-3">
 				<div class="nav-main">
 					<div class="nav-main-item">
-						<?php if(session_id()){ 
+						<?php if(isset($_SESSION['emailAddress'])){ 
 							?><a href="<?php echo $_SERVER['PHP_SELF']; ?>?page=logoff">Log off</a>
-							<?php } else { echo "Login"; } ?></div>
+							<?php } else {
+								?>
+									<a href="<?php echo $_SERVER['PHP_SELF']; ?>?page=login">Login</a>
+								<?php
+							} ?></div>
 				</div>
 			</div>
 		</div>

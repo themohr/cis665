@@ -5,7 +5,7 @@
  * Description: FormProcess Class
  *  
  */
-   session_start();
+
  require_once('FormController.php');
  require_once('dao/CoachDAO.php');
  require_once('dao/TeamDAO.php');
@@ -87,6 +87,7 @@
                   $_SESSION['emailAddress'] = $coach->get_emailAddress();
 		  $_SESSION['fname'] = $coach->get_fname();
 		  $_SESSION['lname'] = $coach->get_lname();
+		  $_SESSION['coachId'] = $coach->get_coachId();
                  
 		$fNameValue = $coach->get_fname();		
 		$lNameValue = $coach->get_lname();	

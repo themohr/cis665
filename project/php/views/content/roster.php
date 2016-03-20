@@ -8,21 +8,35 @@
 	 *  
 	 */
 	require_once('dao/PlayerDAO.php');
+	require_once('dao/TeamDAO.php');
 	require_once('controller/FormRoster.php');
 	require_once('controller/FormTeam.php');
 	
-	$username = "dennis.m.mohr@gmail.com";
-	
 	$processPlayer = new FormRoster();
 	$playerDAO = new PlayerDAO();
+	$teamDAO = new TeamDAO();
 	$processTeam = new FormTeam();
+	$teamId = "";
+	if(isset($_SESSION['coachId'])) {
+		
+		$teamVO = $teamDAO->getTeamByCoachId($_SESSION['coachId']);
+		$teamId = $teamVO->get_teamId();		
+	}
 
 	// If a team is created
-	if(empty($playerDAO->getPlayersByTeamId(67))) {
+	if(isset($teamId) && $teamId !== "") {
 	
 ?>
 	<div class="content">
 		<?php
+			$qString = $_SERVER['QUERY_STRING'];
+			echo $qString;
+			if(stripos($qString,"delete")) {
+				$startNum = stripos($qString,"id");
+				$recordId = substr($qString,$startNum);
+				echo $recordId;
+			} //stripos($page->getPath(),"delete")
+		
 			if(!isset($_POST['processPlayer'])) {
 				
 				$processPlayer->displayForm();
@@ -38,6 +52,8 @@
 					
 				} else {
 					
+					
+					
 					$arrayObj = new ArrayObject();
 					$arrayObj->append($GLOBALS['form']['fname']['response']);
 					$arrayObj->append($GLOBALS['form']['lname']['response']);
@@ -46,9 +62,11 @@
 					$arrayObj->append($GLOBALS['form']['gender']['response']);
 					$arrayObj->append($GLOBALS['form']['dob']['response']);
 					$arrayObj->append($GLOBALS['form']['emailAddress']['response']);
-					$arrayObj->append(20);
-
+					$arrayObj->append($teamId);
+					
 					$processPlayer->insertPlayer($arrayObj);					
+					$processPlayer->emptyForm();
+					$processPlayer->displayForm();
 					
 				}
 				
@@ -64,10 +82,11 @@
 				<th>Gender</th>
 				<th>Date of Birth</th>
 				<th>Email Address</th>
+				<th>Edit/Delete</th>
 			</tr>
 			<?php
 			
-			$roster = $processPlayer->getRoster(20);
+			$roster = $processPlayer->getRoster($teamId);
 			
 			foreach($roster as $record) {
 				echo "<tr>";
@@ -78,6 +97,7 @@
 				echo "<td>" . $record->get_gender() . "</td>";
 				echo "<td>" . $record->get_dob() . "</td>";
 				echo "<td>" . $record->get_email() . "</td>";
+				echo '<td><a onclick="javascript();" href="#">Edit</a> | <a href="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '&action=delete&id=' . $record->get_playerId() . '">Delete</a></td>';
 				echo "</tr>";
 				
 			}
@@ -97,35 +117,5 @@
 	</div>
 	
 	<?php
-	// Team not created? Create team
-	} else {
-		// Display Create Team form
-		if(!isset($_POST['processTeam'])) {
-			
-			$processTeam->displayForm();
-			
-		} else {
-			
-			$form = $processTeam->cleanForm($_POST['form']);
-			$valid = $processTeam->validateForm();
-			
-			if(empty($valid)) {
-				
-				$processTeam->displayForm($valid);
-				
-			} else {
-				
-				$arrayObj = new ArrayObject();
-				
-				$arrayObj->append($GLOBALS['form']['teamName']['response']);
-				$arrayObj->append('dennis.m.mohr@gmail.com');
-				
-				$processTeam->insertTeam($arrayObj);
-				
-				echo "Team Created: " . $GLOBALS['form']['teamName']['response'];
-				
-			}
-			
-		}
-	}
+	} 
 	?>

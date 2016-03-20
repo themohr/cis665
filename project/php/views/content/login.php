@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 ?>
 <div class="col-md-6">
 <?php
-if(!isset($SESSION)) {
+if(!isset($_SESSION['emailAddress'])) {
 ?>
 	<h2>Login</h2>
 <?php
@@ -43,14 +43,14 @@ if(!isset($SESSION)) {
 			if($results == SUCCESSFUL_LOGIN) {
 				
 				$coachVO = $coachDao->getCoachByCoachUserId($user);
-				session_start();
-				$SESSION['sessionid'] = session_id();
-				$SESSION['emailAddress'] = $coachVO->get_emailAddress();
-				$SESSION['fname'] = $coachVO->get_fname();
-				$SESSION['lname'] = $coachVO->get_lname();
+				$_SESSION['sessionid'] = session_id();
+				$_SESSION['emailAddress'] = $coachVO->get_emailAddress();
+				$_SESSION['fname'] = $coachVO->get_fname();
+				$_SESSION['lname'] = $coachVO->get_lname();
+				$_SESSION['coachId'] = $coachVO->get_coachId();
 
 				echo '<pre>';
-				print_r($SESSION);
+				print_r($_SESSION);
 				echo '</pre>';
 				
 				// Use header redirect
@@ -72,7 +72,8 @@ if(!isset($SESSION)) {
 </div>
 <?php
 } else {
-	echo "You're logged in";
+		header('location: ' . $_SERVER['PHP_SELF'] . "?page=profile");
+		exit();
 }
 ?>
 

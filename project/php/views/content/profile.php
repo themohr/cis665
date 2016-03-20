@@ -13,7 +13,7 @@
 
 <div class="col-md-4">
 	<h1>Profile</h1>
-	<?php // $profile->displayForm(); ?>
+	<?php $profile->displayForm(); ?>
 </div>
 <div class="col-md-8">
 	<h1>Team Roster</h1>

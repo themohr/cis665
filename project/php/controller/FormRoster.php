@@ -54,6 +54,24 @@ class FormRoster extends FormController
 		</div>
 <?php
 	}
+	
+	function emptyForm() {
+		
+		$GLOBALS['form']['fname']['response'] = "";
+		
+		$GLOBALS['form']['lname']['response'] = "";
+		
+		$GLOBALS['form']['height']['response'] = "";
+		
+		$GLOBALS['form']['weight']['response'] = "";
+		
+		$GLOBALS['form']['gender']['response'] = "";
+		
+		$GLOBALS['form']['dob']['response'] = "";
+
+		$GLOBALS['form']['emailAddress']['response'] = "";
+		
+	}
 
 	function validateForm() {
 		
@@ -120,6 +138,20 @@ class FormRoster extends FormController
 		$player->set_teamId($arrayObj[7]);
 		
 		$playerDao->cudPlayer($player,CREATE);
+	}
+	
+	function deletePlayer($playerId) {
+		
+		$playerDao = new PlayerDAO();
+		$playerVO = new PlayerVO();
+		
+		$playerVO->set_playerId($playerId);
+		$results = $playerDao->cudPlayer($playerVO,DELETE);		
+		
+	}
+	
+	function updatePlayer() {
+		
 	}
 	
 	function getRoster($teamId) {

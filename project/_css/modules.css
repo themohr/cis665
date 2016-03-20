@@ -33,6 +33,12 @@
 	margin-bottom: 10px;
 	margin-left: 20px;
 }
+.form select {
+	display: inline-block;
+	min-width: 200px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
 .form input[type=submit] {
 	float: right;
 }

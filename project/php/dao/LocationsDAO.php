@@ -65,6 +65,9 @@ STR;
                         AND SPORT_TYPE_NAME IS NOT NULL
 STR;
                     }
+                    
+                  //  print_r($query);
+                    
             $results = executeQuery($query);
             
             $locList = new ArrayObject();
@@ -86,4 +89,11 @@ STR;
             }
             return $locList;
         }
+        
+      public function getAllSporTypes(){
+          
+          $query = " Select SPORT_TYPE_ID , SPORT_TYPE_NAME
+                         From SPORT_TYPE";
+         return executeQuery($query);
+      }  
 }

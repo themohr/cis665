@@ -41,7 +41,9 @@ class FormRoster extends FormController
 
 ?>
 		<div class="forms">
-			<form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
+			<form name="FormRoster" class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
+                                 <input type="hidden" name="PlayerId"/>
+                                 <input type="hidden" name="Action"/>
 				<label for="fname">First Name:</label><input type="text" name="form[fname]"<?php echo $fNameValue; ?> /><?php echo $fNameError; ?><br>
 				<label for="lname">Last Name:</label><input type="text" name="form[lname]"<?php echo $lNameValue; ?> /><?php echo $lNameError; ?><br>
 				<label for="height">Height (inches):</label><input type="number" name="form[height]"<?php echo $heightValue; ?> /><?php echo $heightError; ?><br>
@@ -50,6 +52,7 @@ class FormRoster extends FormController
 				<label for="dob">Date of Birth:</label><input type="text" placeholder="MM/DD/YYYY" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" name="form[dob]"<?php echo $dobValue; ?> /><?php echo $dobError; ?><br>
 				<label for="emailAddress">Email Address:</label><input type="text" name="form[emailAddress]"<?php echo $emailValue; ?> /><?php echo $emailError; ?><br>
 				<input type="submit" value="Add Member" name="processPlayer"/>
+                              
 			</form>
 		</div>
 <?php

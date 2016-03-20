@@ -6,6 +6,7 @@
  *  
  */
  
+ require_once('dao/CoachDAO.php');
  require_once('FormController.php');
  
  class FormLogin extends FormController
@@ -35,6 +36,10 @@
 	}
 
 	function validateForm(){
+		
+		$coachDAO = new CoachDAO();
+		
+		
 		$valid = true;
 		
 		if(!isset($GLOBALS['form']['emailAddress']['response']) ||
@@ -53,6 +58,14 @@
 			empty($GLOBALS['form']['password']['response'])) {
 				$GLOBALS['form']['password']['error'] = "Required fields must be completed.";
 				$valid = false;
+				
+		} else {
+			
+			if($coachDAO->login($GLOBALS['form']['emailAddress']['response'],$GLOBALS['form']['password']['response']) == UNSUCCESSFUL_LOGIN){
+				$GLOBALS['form']['password']['error'] = "Login failed.";
+				$valid = false;
+			}
+			
 		}
 		
 		return $valid;

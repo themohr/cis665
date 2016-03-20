@@ -7,13 +7,15 @@ error_reporting(E_ALL);
 	 * Description: Profile page allows coach to view, update, delete and add a team
 	 *  
 	 */
-        session_start();
 	require_once('controller/FormLogin.php');
 	require_once('dao/CoachDAO.php');
-        require_once('model/CoachVO.php');
+    require_once('model/CoachVO.php');
 	$process = new FormLogin();
 ?>
 <div class="col-md-6">
+<?php
+if(!isset($SESSION)) {
+?>
 	<h2>Login</h2>
 <?php
 	if(!isset($_POST['process'])) {
@@ -41,14 +43,13 @@ error_reporting(E_ALL);
 			if($results == SUCCESSFUL_LOGIN) {
 				
 				$coachVO = $coachDao->getCoachByCoachUserId($user);
-				
+				session_start();
 				$SESSION['sessionid'] = session_id();
 				$SESSION['emailAddress'] = $coachVO->get_emailAddress();
 				$SESSION['fname'] = $coachVO->get_fname();
 				$SESSION['lname'] = $coachVO->get_lname();
 
 				echo '<pre>';
-				print_r($coachVO);
 				print_r($SESSION);
 				echo '</pre>';
 				
@@ -69,3 +70,9 @@ error_reporting(E_ALL);
 	<h2>Register</h2>
 	<p>If you have not yet registered for the Tournament Application,<br>you must <strong><a href="<?php echo $_SERVER['PHP_SELF']; ?>?page=register">Register Here!</a></strong></p>
 </div>
+<?php
+} else {
+	echo "You're logged in";
+}
+?>
+

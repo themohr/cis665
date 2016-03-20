@@ -19,7 +19,10 @@
 			</div>
 			<div class="col-md-3">
 				<div class="nav-main">
-					<div class="nav-main-item"><a href="#">Logged in as: dmohr / Log off</a></div>
+					<div class="nav-main-item">
+						<?php if(session_id()){ 
+							?><a href="<?php echo $_SERVER['PHP_SELF']; ?>?page=logoff">Log off</a>
+							<?php } else { echo "Login"; } ?></div>
 				</div>
 			</div>
 		</div>

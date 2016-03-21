@@ -93,7 +93,7 @@
 				<th>Gender</th>
 				<th>Date of Birth</th>
 				<th>Email Address</th>
-				<th>Edit/Delete</th>
+				<th>Edit / Delete</th>
 			</tr>
 			<?php
 			
@@ -108,7 +108,9 @@
 				echo "<td>" . $record->get_gender() . "</td>";
 				echo "<td>" . $record->get_dob() . "</td>";
 				echo "<td>" . $record->get_email() . "</td>";
-				echo "<td><a onclick=\"subForm('Delete','" . $record->get_playerId() . "')\" href=\"#\">Delete</a></td>";
+				echo "<td><a onclick=\"subForm('Edit','" . $record->get_playerId() . "')\" href=\"#\">Edit</a>"
+                                        . " / <a onclick=\"subForm('Delete','" . $record->get_playerId() . "')\" href=\"#\">Delete</a>"
+                                        . "</td>";
 				echo "</tr>";
 				
 			}

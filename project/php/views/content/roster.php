@@ -47,8 +47,13 @@
                                     echo $result;
                                 }
 			}
+                        if(isset($_POST['Action']) && $_POST['Action'] == "Edit"){
+                                            //edit form
+                                            $processPlayer->editForm();
+                                         
+                        }
 		
-			if(!isset($_POST['processPlayer'])) {
+			if(!isset($_POST['processPlayer']) && !isset($_POST['updatePlayer'])) {
 				
 				$processPlayer->displayForm();
 				
@@ -65,19 +70,37 @@
 					
 					
 					
-					$arrayObj = new ArrayObject();
-					$arrayObj->append($GLOBALS['form']['fname']['response']);
-					$arrayObj->append($GLOBALS['form']['lname']['response']);
-					$arrayObj->append($GLOBALS['form']['height']['response']);
-					$arrayObj->append($GLOBALS['form']['weight']['response']);
-					$arrayObj->append($GLOBALS['form']['gender']['response']);
-					$arrayObj->append($GLOBALS['form']['dob']['response']);
-					$arrayObj->append($GLOBALS['form']['emailAddress']['response']);
-					$arrayObj->append($teamId);
-					
-					$processPlayer->insertPlayer($arrayObj);					
-					$processPlayer->emptyForm();
-					$processPlayer->displayForm();
+                                            $arrayObj = new ArrayObject();
+                                           
+                                            $arrayObj->append($GLOBALS['form']['fname']['response']);
+                                            $arrayObj->append($GLOBALS['form']['lname']['response']);
+                                            $arrayObj->append($GLOBALS['form']['height']['response']);
+                                            $arrayObj->append($GLOBALS['form']['weight']['response']);
+                                            $arrayObj->append($GLOBALS['form']['gender']['response']);
+                                            $arrayObj->append($GLOBALS['form']['dob']['response']);
+                                            $arrayObj->append($GLOBALS['form']['emailAddress']['response']);
+                                            $arrayObj->append($teamId);
+                                            $arrayObj->append($_POST['PlayerId']);
+                                            $arrayObj->append($_POST['TeamName']);
+
+                                            if(isset($_POST['processPlayer'])){
+                                                $processPlayer->insertPlayer($arrayObj);					
+                                               
+                                            }
+                                            
+                                             if(isset($_POST['updatePlayer'])){
+                                                
+                                                $result =  $processPlayer->updatePlayer($arrayObj);
+                                                 if($result == 1){
+                                                        echo 'Record updated successfully';
+                                                    }
+                                                    else{
+                                                        echo $result;
+                                                    }
+                                             }
+                                            $processPlayer->emptyForm();
+                                            $processPlayer->displayForm();
+                                       
 					
 				}
 				

@@ -50,8 +50,8 @@ class PlayerDAO extends BaseDAO{
    public function getPlayerByPlayerId($playerId){
        
         // the SQL query to be executed on the database
-            $query = "Select PLAYER_ID, PLAYER_FNAME, PLAYER_LNAME, PLAYER_HEIGHT,PLAYER_TEAM_ID,
-                PLAYER_WEIGHT,PLAYER_GENDER,PLAYER_DOB,PLAYER_EMAIL_ADDRESS From dbo.PLAYER 
+            $query = "Select PLAYER_ID, PLAYER_FNAME, PLAYER_LNAME, PLAYER_HEIGHT,PLAYER_TEAM_ID,TEAM_NAME,
+                PLAYER_WEIGHT,PLAYER_GENDER,PLAYER_DOB,PLAYER_EMAIL_ADDRESS From dbo.PLAYER p join dbo.TEAM t on (p.PLAYER_TEAM_ID = t.TEAM_ID)
                 WHERE PLAYER_ID =".$playerId;
 
           $results =  executeQuery($query);
@@ -95,10 +95,10 @@ class PlayerDAO extends BaseDAO{
                     }
                     else if (strcasecmp($action, UPDATE) == 0){
                         //update team record
-                          $query = " dbo.SP_CREATE_PLAYER '".$player->get_fname()."','".$player->get_lname().
+                          $query = " dbo.SP_UPDATE_PLAYER '".$player->get_fname()."','".$player->get_lname().
                                "','".$player->get_height()."','".$player->get_weight()."','".$player->get_gender().
-                               "','".$player->get_dob()."','".$player->get_teamName()."','".$player->get_email().
-                               "','".$player->get_newEmail()."'";
+                               "','".$player->get_dob()."','".$player->get_teamId()."','".$player->get_email().
+                               "','".$player->get_playerId()."'";
                
                     }
                     else if(strcasecmp($action, DELETE) == 0){

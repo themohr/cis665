@@ -96,4 +96,11 @@ STR;
                          From SPORT_TYPE";
          return executeQuery($query);
       }  
+      
+       public function getAllTournaments(){
+          
+          $query = " Select TOURNAMENT_ID , TOURNAMENT_NAME
+                         From dbo.TOURNAMENT";
+         return executeQuery($query);
+      }  
 }

@@ -6,6 +6,13 @@
 				  document.FormRoster.submit();
 				 	 
 				  }
+                                  
+                                  function subForm1(action)
+				  {
+				  document.tournamentRegister['Action'].value=action;
+				  document.tournamentRegister.submit();
+				 	 
+				  }
 </script>
 <?php
 	ini_set('display_errors',1);
@@ -20,6 +27,8 @@
 	require_once('dao/TeamDAO.php');
 	require_once('controller/FormRoster.php');
 	require_once('controller/FormTeam.php');
+         require_once("dao/LocationsDAO.php");
+          require_once("dao/RegistrationDAO.php"); 
 	
 	$processPlayer = new FormRoster();
 	$playerDAO = new PlayerDAO();
@@ -142,14 +151,116 @@
 			
 			</tbody>
 		</table>
-		<a href="delete">Delete Team</a>Delete
-		<form name="tournamentRegister" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="post">
+	<?php
+          $locDAO = new LocationsDAO(); 
+          
+          $regDao = new RegistrationDAO();
+          
+         $tournaments =  $locDAO->getAllTournaments();
+                        
+        ?>
+            <h1>Registration</h1>
+            <!--a href="<//?php echo $_SERVER['PHP_SELF']; ?>?page=registration" >Register</a-->
+            <div class="forms">
+               <form name="tournamentRegister" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="post">
+                    <input type="hidden" name="Action"/>
+                    <select name="sTournament" id="sTournament">
+                       
+                            <?php
+                                foreach ($tournaments as $tournament)
+                                {
+                                    extract($tournament); 
+                                    echo '<option value="' . $TOURNAMENT_ID .'">' . $TOURNAMENT_NAME . '</option>';
+                                }
+                            ?>
+                     </select>
 			
-			<select>
-				<option value="tourn1">Tournament 1</option>
-			</select>
-			<input type="submit" value="Register" name="processReg"/>			
+		<input type="submit" value="Register" name="addReg"/>
+                 
+                        
 		</form>
+                
+                  <!--a href="#" onclick="subForm1('addReg')">Register</a-->
+                  
+                
+            </div>
+            
+            
+              <?php
+                
+              if(isset($_POST['addReg'])) {
+            
+                $tourId = "";  
+                if(isset($_POST['sTournament'])){
+                    $tourId = $_POST['sTournament'];
+                }
+		$registration = new RegistrationVO();
+                $registration->set_tournamentId($tourId);
+                $registration->set_teamId($teamId);
+              
+                $regResult = "";
+		$regResult = $regDao->cudRegistration($registration, CREATE);
+                
+                if($regResult == 1){
+                        echo 'Tournament registered successfully';
+                   }
+                     else{
+                            echo $regResult;
+                   }
+                 
+             }//end of if(isset($_POST['addReg'])
+            unset($_POST['addReg']);
+            ?>
+            
+               <table>
+                   <thead>
+                        <tr>
+                        <th>Tournament Name</th>
+                        <th>Date</th>
+                        <th>Begin Time</th>
+                        <th>End Time</th>
+                        <th>Sport Type</th>
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                     </tr>
+                  </thead>
+			<tbody>
+			<tr>
+				
+			</tr>
+			<?php
+			
+			$regList = $regDao->searchRegistrationByTeamId($teamId);
+			
+			 $iterator = $regList->getIterator();
+
+                         while ($iterator->valid()) {
+
+                          $reg = $iterator->current();
+                          $tournament = $reg->get_tournament();
+                                  
+				echo "<tr>";
+                                echo "<td>" . $tournament->get_tournamentName() . "</td>";
+                                echo "<td>" . $tournament->get_tournamentDate() . "</td>";
+                                echo "<td>" . $tournament->get_tournamentBeginTime() . "</td>";
+                                echo "<td>" . $tournament->get_tournamentEndTime() . "</td>";
+                                echo "<td>" . $tournament->get_sportTypeName() . "</td>";
+                                echo "<td>" . $tournament->get_tournamentStreet() . "</td>";
+                                echo "<td>" . $tournament->get_tourcenameCity() . "</td>";
+                                echo "<td>" . $tournament->get_tournamentState() . "</td>";
+                                echo "<td>" . $tournament->get_tournamentZip() . "</td>"  ;
+                                echo "</tr>";
+				                                
+                                 $iterator->next();
+				
+			}//end of while
+			
+			?>
+			
+			</tbody>
+		</table>
 
 	</div>
 	

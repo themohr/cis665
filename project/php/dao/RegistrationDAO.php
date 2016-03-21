@@ -7,7 +7,7 @@
  *  
  */
 
-
+require_once ("BaseDAO.php");
 require_once ("model/TournamentVO.php");
 require_once ("model/TeamVO.php");
 require_once ("model/RegistrationVO.php");
@@ -26,9 +26,11 @@ class RegistrationDAO extends BaseDAO{
                              TOURNAMENT_CITY, 
                              TOURNAMENT_STATE_CODE,  
                              TOURNAMENT_ZIP,
-                             TEAM_ID, TEAM_NAME
+                             TEAM_ID, TEAM_NAME,
+                             SPORT_TYPE_ID, SPORT_TYPE_NAME
                         FROM dbo.REGISTRATION reg JOIN dbo.TEAM t on (reg.REGISTRATION_TEAM_ID = t.TEAM_ID) 
-                        JOIN dbo.TOURNAMENT tour on(reg.REGISTRATION_TEAM_TOURNAMENT_ID = tour.TOURNAMENT_ID)  WHERE t.TEAM_ID =".$teamId;
+                        JOIN dbo.TOURNAMENT tour on(reg.REGISTRATION_TEAM_TOURNAMENT_ID = tour.TOURNAMENT_ID)
+                        join dbo.SPORT_TYPE sp ON (sp.SPORT_TYPE_ID = tour.TOURNAMENT_SPORT_TYPE_ID) WHERE t.TEAM_ID =".$teamId;
 
           $results =  executeQuery($query);
 
@@ -69,30 +71,31 @@ class RegistrationDAO extends BaseDAO{
     }
     
     
-     public function cudCoach($registration, $action){
+     public function cudRegistration($registration, $action){
 
             if(isset($registration)){
                 
+              //  print_r($registration);
                     $query = "";
 
                     if(strcasecmp($action, CREATE) == 0){
-                        //add coach record
-                        $query = " dbo.SP_CREATE_REGISTRATION '".$registration->get_teamName()."','".$registration->get_tournamentName()."";
+                        //add registration record
+                        $query = " dbo.SP_CREATE_REGISTRATION '".$registration->get_teamId()."','".$registration->get_tournamentId()."'";
                                 
                
                     }
                     else if (strcasecmp($action, UPDATE) == 0){
-                        //update coach record
+                        //update registration record
                          $query = " dbo.SP_UPDATE_REGISTRATION '".$registration->get_teamName()."','".$registration->get_tournamentName()."','"
                                 .$registration->get_newTournamentName()."'";
             }
                     else if(strcasecmp($action, DELETE) == 0){
-                        //delete coach record 
+                        //delete registration record 
                          $query = " dbo.SP_DELETE_REGISTRATION '".$registration->get_teamName()."','".$registration->get_tournamentName()."";
                     }
                     
                      $result = parent::processCUD($query,$action); 
-                     echo 'Result in RegistrationDAO='.$result;
+                   
                     return $result;
 
             }else{

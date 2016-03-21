@@ -149,7 +149,7 @@ class FormRoster extends FormController
 		
 		$playerVO->set_playerId($playerId);
 		$results = $playerDao->cudPlayer($playerVO,DELETE);		
-		
+		return $results;
 	}
 	
 	function updatePlayer() {

@@ -39,7 +39,13 @@
 	<div class="content">
 		<?php
 			if(isset($_POST['Action']) && $_POST['Action'] == "Delete") {
-				$processPlayer->deletePlayer($_POST['PlayerId']);
+				$result = $processPlayer->deletePlayer($_POST['PlayerId']);
+                                if($result == 1){
+                                    echo 'Record deleted successfully';
+                                }
+                                else{
+                                    echo $result;
+                                }
 			}
 		
 			if(!isset($_POST['processPlayer'])) {

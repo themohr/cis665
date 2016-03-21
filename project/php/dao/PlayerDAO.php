@@ -108,7 +108,6 @@ class PlayerDAO extends BaseDAO{
                     }
                     
                      $result = parent::processCUD($query,$action); //or use $this->
-                     echo 'Result in PlayerDAO='.$result;
                      return $result;
 
             }else{

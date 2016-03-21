@@ -137,7 +137,7 @@
  
  
                 <div class="forms">
-			<form class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
+			<form name="formProfile" class="form" action="<?php echo $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];?>" method="POST">
                             <label for="fname">First Name:</label> <input type="text" name="form[fname]" value="<?php echo $fNameValue; ?>"><br>
 				<label for="lname">Last Name:</label> <input type="text" name="form[lname]" value="<?php echo $lNameValue; ?>"><br>
 				<label for="teamName">Team Name:</label><input type="text" name="form[teamName]" value="<?php echo $teamNameValue; ?>"><br>

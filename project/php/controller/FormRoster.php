@@ -144,7 +144,6 @@ class FormRoster extends FormController
 	}
 	
 	function deletePlayer($playerId) {
-		
 		$playerDao = new PlayerDAO();
 		$playerVO = new PlayerVO();
 		

@@ -1,3 +1,12 @@
+<script>
+				function subForm(action,id)
+				  {
+				  document.FormRoster['PlayerId'].value=id;
+				  document.FormRoster['Action'].value=action;
+				  document.FormRoster.submit();
+				 	 
+				  }
+</script>
 <?php
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
@@ -29,13 +38,9 @@
 ?>
 	<div class="content">
 		<?php
-			$qString = $_SERVER['QUERY_STRING'];
-			echo $qString;
-			if(stripos($qString,"delete")) {
-				$startNum = stripos($qString,"id");
-				$recordId = substr($qString,$startNum);
-				echo $recordId;
-			} //stripos($page->getPath(),"delete")
+			if(isset($_POST['Action']) && $_POST['Action'] == "Delete") {
+				$processPlayer->deletePlayer($_POST['PlayerId']);
+			}
 		
 			if(!isset($_POST['processPlayer'])) {
 				
@@ -97,12 +102,13 @@
 				echo "<td>" . $record->get_gender() . "</td>";
 				echo "<td>" . $record->get_dob() . "</td>";
 				echo "<td>" . $record->get_email() . "</td>";
-				echo '<td><a onclick="javascript();" href="#">Edit</a> | <a href="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '&action=delete&id=' . $record->get_playerId() . '">Delete</a></td>';
+				echo "<td><a onclick=\"subForm('Delete','" . $record->get_playerId() . "')\" href=\"#\">Delete</a></td>";
 				echo "</tr>";
 				
 			}
 			
 			?>
+			
 			</tbody>
 		</table>
 		<a href="delete">Delete Team</a>Delete

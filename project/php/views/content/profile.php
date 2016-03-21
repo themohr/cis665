@@ -16,6 +16,6 @@
 	<?php $profile->displayForm(); ?>
 </div>
 <div class="col-md-8">
-	<h1>Team Roster</h1>
+	
 	<?php include('views/content/roster.php');?>
 </div>

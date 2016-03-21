@@ -45,6 +45,7 @@
 	if(isset($teamId) && $teamId !== "") {
 	
 ?>
+        <h1>Team Roster</h1>
 	<div class="content">
 		<?php
 			if(isset($_POST['Action']) && $_POST['Action'] == "Delete") {
@@ -264,6 +265,10 @@
 
 	</div>
 	
-	<?php
-	} 
+	<?php 
+        } else {
+            ?> 
+        <h1>Add a team to your profile</h1>
+        <?php 
+        }
 	?>

@@ -22,6 +22,8 @@ function buildPage($serverInfo,$title) {
 	} elseif(substr($page->getPath(),5) == "logoff") {
 		session_destroy();
 		$file = "views/content/home.php";
+		header('refresh:0;url=' . $_SERVER['PHP_SELF']);
+		exit();
 	} else {
 		$file = "views/content/home.php";
 	}

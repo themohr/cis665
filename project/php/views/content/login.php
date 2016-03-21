@@ -48,14 +48,11 @@ if(!isset($_SESSION['emailAddress'])) {
 				$_SESSION['fname'] = $coachVO->get_fname();
 				$_SESSION['lname'] = $coachVO->get_lname();
 				$_SESSION['coachId'] = $coachVO->get_coachId();
+				
+				header('location: ' . $_SERVER['PHP_SELF'] . "?page=profile");
+				exit();
+				//echo '<a href="' . $_SERVER['PHP_SELF'] . '?page=profile">View profile</a>';
 
-				echo '<pre>';
-				print_r($_SESSION);
-				echo '</pre>';
-				
-				// Use header redirect
-				echo '<a href="' . $_SERVER['PHP_SELF'] . '?page=profile">View profile</a>';
-				
 			} else {
 				echo "Sorry, unable to authenticate.";
 			}
@@ -72,8 +69,8 @@ if(!isset($_SESSION['emailAddress'])) {
 </div>
 <?php
 } else {
-		header('location: ' . $_SERVER['PHP_SELF'] . "?page=profile");
-		exit();
+	header('location: ' . $_SERVER['PHP_SELF'] . "?page=profile");
+	exit();
 }
 ?>
 
